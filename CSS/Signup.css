@@ -1,0 +1,101 @@
+@import "catppucin_DarkMode.css";
+
+body{
+    background-color: var(--base);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    min-width: fit-content;
+    font-family: system-ui;
+    color: var(--text);
+}
+
+.loginForm{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    background-image: url("../image/loginBackground.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 75%;
+    height: 475px;
+    min-width: 600px;
+    margin: 10% auto;
+    border: solid 3px var(--lavander);
+    border-radius: 21px;
+    box-shadow: 0px 0px 50px var(--crust);
+}
+
+.loginForm > .leftSide{
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.loginForm > .rightSide{
+    padding: 10px;
+    max-height: 455px;
+    backdrop-filter: blur(50px);
+    color: var(--text);
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    text-align: center;
+}
+
+h2{
+    margin: 30px;
+    margin-bottom: 10px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.formInputs{
+    display: grid;
+    height: 100%;
+    padding: 25px;
+    gap: 30px;
+}
+
+.label{
+    margin-bottom: 10px;
+    text-align: left;
+}
+label{
+    margin-left: 40px;
+    filter: opacity(85%);
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid var(--text);
+    background-color: transparent;
+    color: var(--text);
+    width: 60%;
+    font-size: large;
+}
+
+button{
+    width: 40%;
+    height: 120%;
+    padding: 5px;
+    border: none;
+    background-color: var(--base);
+    color: var(--text);
+    border-radius: 5px;
+    font-size: large;
+}
+button:hover{
+    background-color: #181824;
+}
+button:active{
+    background-color: #27273a;
+}
+
+
+a{
+    color: var(--text);
+    text-decoration: none;
+}
