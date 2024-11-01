@@ -1,0 +1,87 @@
+@import url("catppucin_DarkMode.css");
+@import url("header.css");
+
+body {
+    background-color: var(--base);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    min-width: fit-content;
+    font-family: system-ui;
+    color: var(--text);
+}
+
+main{
+    max-width: 85%;
+    height: auto;
+    margin: auto;
+    margin-top: 30px;
+
+}
+
+.controls{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 35%;
+}
+
+main > .h3{
+    border-bottom: solid 2px var(--surface1);
+    margin-bottom: 20px;
+}
+main h3{
+    margin-bottom: 5px;
+}
+
+.controls .buttons{
+    width: 39%;
+    display: flex;
+    justify-content: space-between;
+}
+.controls .buttons button{
+    margin-top: 10px;
+    border-radius: 19px;
+    padding: 7px;
+    padding-right: 10px;
+    border: none;
+    background-color: var(--mauve);
+}
+
+.list > div{
+    padding: 10px;
+    margin: 0px 15px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    flex-direction: row;
+    overflow: auto;
+    max-height: 450px;
+    gap: 25px;
+    row-gap: 20px;
+    height: auto;
+}
+.list > div:hover{
+    border-radius: 15px;
+    background-color: var(--surface0);
+}
+
+.playlistElement{
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+    border: solid 2px var(--lavander);
+    background-color: var(--crust);
+    border-radius: 15px;
+}
+
+.artistElement{
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+    border: solid 2px var(--red);
+}
+

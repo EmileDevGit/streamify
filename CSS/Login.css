@@ -87,10 +87,10 @@ button{
     font-size: large;
 }
 button:hover{
-    background-color: #181824;
+    background-color: #27273a;
 }
 button:active{
-    background-color: #27273a;
+    background-color: #181824;
 }
 
 
