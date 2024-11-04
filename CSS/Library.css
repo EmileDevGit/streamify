@@ -51,37 +51,115 @@ main h3{
 }
 
 .list > div{
-    padding: 10px;
-    margin: 0px 15px;
-    margin-bottom: 35px;
     display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
-    flex-direction: row;
-    overflow: auto;
-    max-height: 450px;
-    gap: 25px;
-    row-gap: 20px;
+    gap: 20px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.artistElement:hover, .playlistElement:hover {
+    transform: scale(1.05);
+}
+
+.playlistElement {
+    padding: 10px;
+    width: 200px;
     height: auto;
-}
-.list > div:hover{
-    border-radius: 15px;
-    background-color: var(--surface0);
-}
-
-.playlistElement{
-    padding: 5px;
-    width: 200px;
-    height: 200px;
-    border: solid 2px var(--lavander);
+    border: 2px solid var(--lavander);
     background-color: var(--crust);
-    border-radius: 15px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px black;
+    flex-shrink: 0;
 }
 
-.artistElement{
-    padding: 5px;
-    width: 200px;
-    height: 200px;
-    border: solid 2px var(--red);
+.playlist-image-container {
+    width: 100%;
+    height: 150px; 
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
+
+.playlist-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; 
+    border-radius: 10px;
+}
+
+.playButton {
+    position: absolute;
+    margin-left: 15px;
+    bottom: 10px;
+    padding: 8px 12px;
+    font-size: 90%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--surface0);
+    left: 10px;
+    background-color: var(--green);
+}
+.playButton:hover {
+    background-color: var(--teal);
+}
+
+.artistElement {
+    display: inline-block;
+    background-color: var(--surface1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+    text-align: center;
+    box-shadow: 0 6px 12px black;
+    position: relative;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+
+.artist-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+.artist-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artist-name {
+    font-weight: bold;
+    font-size: 120%;
+    color: var(--text);
+    margin: 8px 0 5px;
+}
+.profile-button{
+    position: absolute;
+    bottom: 10px;
+    padding: 8px 12px;
+    font-size: 90%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--text);
+    left: 10px;
+    background-color: var(--blue);
+}
+.profile-button:hover {
+    background-color: var(--lavender);
+}
+
+
 
