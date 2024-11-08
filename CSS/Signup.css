@@ -94,8 +94,20 @@ button:active{
     background-color: #181824;
 }
 
-
 a{
     color: var(--text);
     text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .loginForm{
+        min-width: 350px;
+        grid-template-columns: 25% 75%;
+    }
+    .formInputs{
+        padding: 0px;
+    }
+    h2{
+        margin-top: 20px;
+    }
 }

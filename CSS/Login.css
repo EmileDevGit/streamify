@@ -99,5 +99,17 @@ a{
     text-decoration: none;
 }
 
+@media (max-width: 600px) {
+    .loginForm{
+        min-width: 350px;
+        grid-template-columns: 25% 75%;
+    }
+    .formInputs{
+        padding: 0px;
+    }
+    h2{
+        margin-top: 20px;
+    }
+}
 
 

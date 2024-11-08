@@ -16,7 +16,6 @@ main{
     height: auto;
     margin: auto;
     margin-top: 30px;
-
 }
 
 .controls{
@@ -159,6 +158,33 @@ main h3{
 }
 .profile-button:hover {
     background-color: var(--lavender);
+}
+
+@media (max-width: 600px) {
+    main{
+        max-width: 325px;
+        margin-top: 10px;
+    }
+    .playlistElement {
+        width: 125px;
+        height: 125px;
+    }
+    
+    .artistElement {
+        width: 125px;
+        height: 125px;
+    }
+    .controls .buttons{
+        width: auto;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 5px;
+    }
+    .controls .buttons button{
+        margin: 5px;
+        width: 90px;
+        height: 30px;
+    }
 }
 
 

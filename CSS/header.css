@@ -1,6 +1,6 @@
 
 header {
-    margin: auto;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,6 +9,7 @@ header {
     border: 3px solid var(--surface1);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    
 }
 
 .logo {
@@ -18,16 +19,14 @@ header {
 }
 
 .search-bar {
-    display: flex;
-    align-items: center;
     background-color: var(--surface0);
     border-radius: 20px;
     padding: 5px 15px;
     flex-grow: 1;
-    max-width: 400px;
+    max-width: 700px;
 }
 
-.search-bar input {
+.search-bar .search {
     border: none;
     background: none;
     outline: none;
@@ -35,6 +34,10 @@ header {
     font-size: 1em;
     color: var(--text);
     width: 100%;
+}
+.search-bar .mobileSearch {
+    visibility: hidden;
+    display: none;
 }
 
 nav a {
@@ -49,4 +52,41 @@ nav a {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.3em;
+        margin-right: 10px;
+    }
+    .search-bar {
+        background-color: var(--surface0);
+        border-radius: 20px;
+        padding: 5px 15px;
+        width: 58px;
+        height: 25px;
+    }
+    .search-bar .search {
+        visibility: hidden;
+        display: none;
+    }
+    .search-bar .mobileSearch {
+        width: 100%;
+        visibility: visible;
+        display: inline;
+        border: none;
+        background: none;
+        outline: none;
+        padding: 0px;
+        font-size: 1.3em;
+        color: var(--text);
+    }
+    .search-bar .mobileSearch::placeholder {
+        text-align: right;
+    }
+    
+    
+    nav a {
+        font-size: 15px;
+    }
 }
