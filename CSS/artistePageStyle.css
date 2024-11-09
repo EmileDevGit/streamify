@@ -44,7 +44,7 @@ body {
     border: none;
     border-radius: 15px;
     padding: 5px 10px;
-    font-size: 0.8em;
+    font-size: 80%;
     cursor: pointer;
 }
 
@@ -54,7 +54,7 @@ body {
     gap: 20px;
     padding: 20px;
     overflow-x: auto;
-    white-space: nowrap;
+    flex-wrap: nowrap;
     max-width: 90%;
     margin: 0 auto;
     margin-top: 40px;
@@ -87,14 +87,14 @@ body {
 
 .musique-info p:first-child {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 120%;
     color: var(--text);
     margin-bottom: 5px;
 }
 
 .musique-info p {
     margin: 0;
-    font-size: 1em;
+    font-size: 100%;
     color: var(--subText0);
 }
 
@@ -103,7 +103,7 @@ body {
     position: absolute;
     bottom: 15px;
     padding: 8px 12px;
-    font-size: 0.9em;
+    font-size: 90%;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -155,14 +155,14 @@ body {
 
 .album-info p:first-child {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 120%;
     color: var(--text);
     margin-bottom: 5px;
 }
 
 .album-info p {
     margin: 0;
-    font-size: 1em;
+    font-size: 100%;
     color: var(--subText0);
 }
 
@@ -187,7 +187,7 @@ body {
 
 .album .play-button, .album .add-button {
     padding: 8px 12px;
-    font-size: 0.9em;
+    font-size: 90%;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -208,4 +208,36 @@ body {
 
 .album .add-button:hover {
     background-color: var(--lavander);
+}
+
+
+@media (max-width: 600px) {
+    .content-musique, .content-album {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .musique, .album {
+        width: 150px;
+        height: auto;
+        padding: 15px;
+        box-shadow: 0 4px 8px black;
+    }
+
+    .musique-info p:first-child, .album-info p:first-child {
+        font-size: 100%;
+    }
+
+    .add-button, .play-button {
+        padding: 5px 8px;
+        font-size: 80%;
+    }
+    
+    .artist-profile {
+        margin: 10px;
+    }
+
+    .sectionTitle {
+        font-size: 120%;
+    }
 }

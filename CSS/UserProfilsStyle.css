@@ -5,11 +5,11 @@ body {
     font-family: system-ui;
     width: 100%;
     margin: 0px;
-    
     background-color: var(--base);
     color: var(--text);
 }
-main{
+
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,16 +20,16 @@ a {
     text-decoration: none;
 }
 
-
-
+/* Section Profil */
 .profile {
     margin-top: 20px;
     display: flex;
     flex-direction: column; 
     align-items: center; 
     text-align: center;
-    gap: 10px; 
+    gap: 10px;
 }
+
 .profile-picture {
     width: 100px;
     height: 100px;
@@ -38,60 +38,95 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5em;
+    font-size: 250%;
     color: var(--mauve);
 }
+
 .profile-picture img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
+
 .profile h2 {
     color: var(--text);
-    
 }
 
-
-
+/* Playlists Section */
 .playlists {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
     gap: 40px;
+    margin: 20px 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
-.playlist {
+
+.playlistElement {
     background-color: var(--surface1);
-    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px black;
-    display: flex;
-    align-items: center;
+    padding: 10px;
     width: 150px;
-    justify-content: space-between;
+    text-align: center;
 }
-.playlist-icon {
-    width: 30px;
-    height: 30px;
-    background-color: var(--flamingo);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--mauve);
-    font-size: 1em;
+
+.playlist-image-container {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.playlist-info p:first-child {
+
+.playlist-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.playButton, .addButton {
+    position: absolute;
+    top: 5px;
+    padding: 5px 10px;
+    font-size: 90%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.playButton {
+    left: 5px;
+    background-color: var(--green);
+}
+
+.addButton {
+    right: 5px;
+    background-color: var(--mauve);
+}
+
+.playButton:hover {
+    background-color: var(--teal);
+}
+
+.addButton:hover {
+    background-color: var(--lavender);
+}
+
+.playlist-title {
+    font-size: 110%;
     font-weight: bold;
-    color: var(--rosewater);
+    color: var(--text);
+    margin-top: 10px;
 }
-.playlist-info p {
-    margin: 0;
-    font-size: 0.9em;
+
+.playlist-description {
+    font-size: 90%;
     color: var(--subText0);
+    margin-top: 5px;
 }
 
-
+/* Setting Section */
 .setting {
     display: flex;
     justify-content: center;
@@ -102,9 +137,44 @@ a {
     box-shadow: 0 4px 8px black;
     margin-top: 20px;
     color: var(--text);
-    font-size: 1.2em;
+    font-size: 120%;
     text-align: center;
 }
-.Setting p {
+
+.setting p {
     margin: 0;
+}
+
+
+@media (max-width: 600px) {
+    .profile {
+        gap: 5px;
+    }
+
+    .profile-picture {
+        width: 80px;
+        height: 80px;
+        font-size: 200%;
+    }
+
+    .playlists {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .playlistElement {
+        width: 90%;
+    }
+
+    .setting {
+        padding: 10px 15px;
+        font-size: 100%;
+        margin-top: 15px;
+    }
+
+    .sectionTitle {
+        font-size: 120%;
+        text-align: center;
+    }
 }

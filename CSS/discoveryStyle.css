@@ -263,3 +263,43 @@ body {
 .add-button:hover {
     background-color: var(--lavander);
 }
+
+@media (max-width: 600px) {
+    .sectionTitle {
+        font-size: 120%;
+        text-align: center;
+        border-bottom: none;
+        margin-bottom: 10px;
+    }
+
+    .content-musique, .playlist, .content-artiste {
+        gap: 10px;
+        padding: 5px;
+        overflow-x: auto; 
+        flex-wrap: nowrap; 
+    }
+
+    .musique, .playlistElement, .artist {
+        width: 150px;
+        padding: 15px;
+        height: auto;
+    }
+
+    .musique-info p:first-child, .playlist-title, .artist-name {
+        font-size: 100%;
+    }
+
+    .play-button, .add-button, .playButton, .addButton, .profile-button {
+        padding: 5px 8px;
+        font-size: 80%;
+    }
+
+    .playlist-image-container {
+        height: 120px;
+    }
+
+    .artist-picture {
+        width: 60px;
+        height: 60px;
+    }
+}
