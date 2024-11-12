@@ -28,8 +28,8 @@ body {
 /* Musique Section */
 .content-musique {
     display: flex;
+    margin-left: 50px;
     gap: 20px;
-    overflow-x: hidden;
     flex-wrap: nowrap;
     padding: 10px;
     max-width: 100%;
@@ -79,7 +79,7 @@ body {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    color: var(--text);
+    color: var(--surface0);
 }
 
 .add-button {
@@ -104,7 +104,6 @@ body {
     flex-wrap: nowrap;
     padding: 10px;
     max-width: 100%;
-    transition: transform 0.2s;
 }
 
 .playlistElement {
@@ -117,6 +116,7 @@ body {
     text-align: left;
     box-shadow: 0 4px 8px black;
     flex-shrink: 0;
+    transition: transform 0.2s;
 }
 
 .playlist-image-container {
@@ -146,25 +146,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: var(--text);
-}
-
-.playButton {
-    left: 5px;
-    background-color: var(--green);
-}
-
-.addButton {
-    right: 5px;
-    background-color: var(--mauve);
-}
-
-.playButton:hover {
-    background-color: var(--teal);
-}
-
-.addButton:hover {
-    background-color: var(--lavander);
+    color: var(--surface0);
 }
 
 .playlistElement:hover{
@@ -189,7 +171,7 @@ body {
 .content-artiste {
     display: flex;
     gap: 20px;
-    overflow-x: hidden;
+    margin-left: 50px;
     flex-wrap: nowrap;
     padding: 10px;
     max-width: 100%;
@@ -235,7 +217,7 @@ body {
     margin: 8px 0 5px;
 }
 
-.profile-button, .add-button {
+.profile-button{
     position: absolute;
     bottom: 10px;
     padding: 8px 12px;
@@ -243,21 +225,13 @@ body {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    color: var(--text);
-}
-
-.profile-button {
+    color: var(--surface0);
     left: 10px;
-    background-color: var(--blue);
-}
-
-.add-button {
-    right: 10px;
-    background-color: var(--mauve);
+    background-color: var(--lavander);
 }
 
 .profile-button:hover {
-    background-color: var(--lavender);
+    background-color: #969ed6;
 }
 
 .add-button:hover {
@@ -265,6 +239,12 @@ body {
 }
 
 @media (max-width: 600px) {
+    .content-artiste, .content-musique{
+        margin: auto;
+    }
+    .artist{
+        min-height : 120px;
+    }
     .sectionTitle {
         font-size: 120%;
         text-align: center;

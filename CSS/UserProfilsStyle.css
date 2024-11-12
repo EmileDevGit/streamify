@@ -84,7 +84,7 @@ a {
     border-radius: 10px;
 }
 
-.playButton, .addButton {
+.makePrivateButton {
     position: absolute;
     top: 5px;
     padding: 5px 10px;
@@ -92,25 +92,16 @@ a {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: var(--text);
+    color: var(--surface0);
 }
 
-.playButton {
+.makePrivateButton {
     left: 5px;
     background-color: var(--green);
 }
 
-.addButton {
-    right: 5px;
-    background-color: var(--mauve);
-}
-
-.playButton:hover {
+.makePrivateButton:hover {
     background-color: var(--teal);
-}
-
-.addButton:hover {
-    background-color: var(--lavender);
 }
 
 .playlist-title {
@@ -158,13 +149,14 @@ a {
     }
 
     .playlists {
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
+        width: 80%;
         gap: 20px;
     }
 
     .playlistElement {
-        width: 90%;
+        width: 150px;
     }
 
     .setting {

@@ -71,6 +71,7 @@ main h3{
     border-radius: 10px;
     text-align: left;
     box-shadow: 0 4px 8px black;
+    transition: transform 0.2s;
     flex-shrink: 0;
 }
 
@@ -162,7 +163,7 @@ main h3{
 
 @media (max-width: 600px) {
     main{
-        max-width: 325px;
+        max-width: 350px;
         margin-top: 10px;
     }
     .playlistElement {
@@ -184,6 +185,29 @@ main h3{
         margin: 5px;
         width: 90px;
         height: 30px;
+    }
+    .musique, .playlistElement, .artist {
+        width: 150px;
+        padding: 15px;
+        height: auto;
+    }
+
+    .musique-info p:first-child, .playlist-title, .artist-name {
+        font-size: 100%;
+    }
+
+    .play-button, .add-button, .playButton, .addButton, .profile-button {
+        padding: 5px 8px;
+        font-size: 80%;
+    }
+
+    .playlist-image-container {
+        height: 120px;
+    }
+
+    .artist-picture {
+        width: 60px;
+        height: 60px;
     }
 }
 
