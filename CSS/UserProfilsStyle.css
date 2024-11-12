@@ -1,5 +1,5 @@
-@import "catppucin_DarkMode.css";
-@import url("Header.css");
+@import "_catppucin_DarkMode.css";
+@import url("_header.css");
 
 body {
     font-family: system-ui;
