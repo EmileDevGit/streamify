@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/Playlist.css">
+    <link rel="stylesheet" href="CSS/playlistStyle.css">
     <title>Streamify - Playlist</title>
 </head>
 <body>
-    <!-- Ce header sera automatisé en PHP ou JS -->
-    <header>
-        <div class="logo">Streamify</div>
-        <form action="search.html" method="GET" class="search-bar">
-            <input class="search" type="text" name="query" placeholder="Recherche" required>
-            <input class="mobileSearch" type="text" name="query" placeholder="🔎︎">
-        </form>
-        <nav>
-            <a href="discovery.html">DISCOVERY</a>
-            <a href="library.html">LIBRARY</a>
-        </nav>
-        <div class="profile-icon">
-            <a href="UserProfils.html">
-                <img src="../image/profileIconpng.png" alt="Profil">
-            </a>
-        </div>
-    </header>
 
+    <?php include_once("commons/header.inc.php");?>
+    
     <main>
         <div class="playlistHead">
             <div class="imageContainer">

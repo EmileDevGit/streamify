@@ -4,29 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/Library.css">
+    <link rel="stylesheet" href="CSS/libraryStyle.css">
     <title>Streamify - Library</title>
 </head>
 
 <body>
-    <!--Ce header sera automatisé en PHP or JS-->
-    <header>
-        <div class="logo">Streamify</div>
-        <form action="search.html" method="GET" class="search-bar">
-            <input class="search" type="text" name="query" placeholder="Recherche" required>
-            <input class="mobileSearch" type="text" name="query" placeholder="🔎︎">
-        </form>
-        <nav>
-            <a href="discovery.html">DISCOVERY</a>
-            <a href="library.html">LIBRARY</a>
-        </nav>
-        <div class="profile-icon">
-            <a href="UserProfils.html">
-                <img src="../image/profileIconpng.png" alt="Profil">
-            </a>
-        </div>
-    </header>
-    
+
+    <?php include_once("commons/header.inc.php");?>
+
     <main>
         <div class="controls">
             <div class="title">
@@ -44,7 +29,7 @@
             <div class="playlists">
                 <div class="playlistElement">
                     <div class="playlist-image-container">
-                        <a href="playlist.html"><img src="../image/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
+                        <a href="playlist.php"><img src="../IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
                         <button class="playButton">PLAY</button>
                     </div>
                     <h4 class="playlist-title">Titre de Playlist</h4>
@@ -53,7 +38,7 @@
 
                 <div class="playlistElement">
                     <div class="playlist-image-container">
-                        <a href="playlist.html"><img src="../image/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
+                        <a href="playlist.php"><img src="../IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
                         <button class="playButton">PLAY</button>
                     </div>
                     <h4 class="playlist-title">Titre de Playlist</h4>
@@ -67,20 +52,23 @@
         </div>
         <div class="list">
             <div class="artists">
+
                 <div class="artistElement">
                     <div class="artist-picture">
-                        <img src="../image/loginBackground.jpg" alt="Artiste">
+                        <img src="../IMAGES/loginBackground.jpg" alt="Artiste">
                     </div>
                     <h4 class="artist-name">Nom de l'artiste</h4>
-                    <button class="profile-button">PROFILE</button>
+                    <a href="artistePage.php"><button class="profile-button">PROFILE</button></a>
                 </div>
+
                 <div class="artistElement">
                     <div class="artist-picture">
-                        <img src="../image/loginBackground.jpg" alt="Artiste">
-                    </div>
+                        <img src="../IMAGES/loginBackground.jpg" alt="Artiste">
+                    </div> 
                     <h4 class="artist-name">Nom de l'artiste</h4>
-                    <button class="profile-button">PROFILE</button>
+                    <a href="artistePage.php"><button class="profile-button">PROFILE</button></a>
                 </div>
+
             </div>
         </div>
     </main>

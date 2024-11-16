@@ -1,5 +1,6 @@
-@import url("_catppucin_DarkMode.css");
-@import url("_header.css");
+@import url("commons/catppucin_DarkMode.inc.css");
+@import url("commons/header.inc.css");
+@import url("commons/mediaPlayer.inc.css");
 
 body {
     background-color: var(--base);
