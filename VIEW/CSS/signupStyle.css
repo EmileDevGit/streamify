@@ -1,4 +1,4 @@
-@import "_catppucin_DarkMode.css";
+@import url("commons/catppucin_DarkMode.inc.css");
 
 body{
     background-color: var(--base);

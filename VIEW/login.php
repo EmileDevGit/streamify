@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="CSS/loginStyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/loginStyle.css">
     <title>Streamify - Login</title>
 </head>
 
@@ -14,7 +14,7 @@
 
         </div>
         <div class="rightSide">
-            <form action="discovery.html" method="GET" id="loginForm" name="loginForm">
+            <form action="discovery.php" method="GET" id="loginForm" name="loginForm">
                 <div class="loginTitle">
                     <h2><em>Login</em> your account</h2>
                 </div>
@@ -36,7 +36,7 @@
                         <button>Login</button>
                     </div>
                     <div class="signupLink">
-                        <a href="signup.html" target="_self">Create an account</a>
+                        <a href="signup.php" target="_self">Create an account</a>
                     </div>
                 </div>
             </form>

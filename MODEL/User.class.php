@@ -3,6 +3,7 @@
 class User{
 
     // Attributes
+    private $userID;
     private $username;
     private $password;
     private $email;

@@ -1,4 +1,6 @@
-@import "_catppucin_DarkMode.css";
+@import url("commons/catppucin_DarkMode.inc.css");
+/*Test*/
+
 
 body{
     background-color: var(--base);
@@ -13,7 +15,7 @@ body{
 .loginForm{
     display: grid;
     grid-template-columns: 60% 40%;
-    background-image: url("../image/loginBackground.jpg");
+    background-image: url("IMAGES/loginBackground.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     max-width: 75%;

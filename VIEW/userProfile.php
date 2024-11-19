@@ -13,7 +13,7 @@
     <main>
         <section class="profile">
             <div class="profile-picture">
-                <img src="../image/profileIconpng.png" alt="Profil">
+                <img src="IMAGES/profileIconpng.png" alt="Profil">
             </div>
             <section class="setting">
                 <p>Account Setting</p>
@@ -24,7 +24,7 @@
         <section class="playlists">
             <div class="playlistElement">
                 <div class="playlist-image-container">
-                    <a href="playlist.html"><img src="../image/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
+                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
                     <button class="makePrivateButton">Make private</button>
                 </div>
                 <h4 class="playlist-title">Titre de Playlist</h4>
@@ -32,7 +32,7 @@
             </div>
             <div class="playlistElement">
                 <div class="playlist-image-container">
-                    <a href="playlist.html"><img src="../image/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
+                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
                     <button class="makePrivateButton">Make private</button>
                 </div>
                 <h4 class="playlist-title">Titre de Playlist</h4>
@@ -40,7 +40,7 @@
             </div>
             <div class="playlistElement">
                 <div class="playlist-image-container">
-                    <a href="playlist.html"><img src="../image/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
+                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
                     <button class="makePrivateButton">Make private</button>
                 </div>
                 <h4 class="playlist-title">Titre de Playlist</h4>

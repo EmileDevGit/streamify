@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="CSS/signupStyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/signupStyle.css">
     <title>Streamify - Signup</title>
 </head>
 
@@ -14,7 +14,7 @@
 
         </div>
         <div class="rightSide">
-            <form action="Discovery.html" method="POST" id="loginForm" name="loginForm">
+            <form action="discovery.php" method="POST" id="loginForm" name="loginForm">
                 <div class="loginTitle">
                     <h2><em>Register</em> your account</h2>
                 </div>
@@ -41,7 +41,7 @@
                         <button>Signup</button>
                     </div>
                     <div>
-                        <a href="login.html" target="_self">Already have an account</a>
+                        <a href="login.php" target="_self">Already have an account</a>
                     </div>
                 </div>
             </form>
