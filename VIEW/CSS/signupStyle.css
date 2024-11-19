@@ -13,7 +13,7 @@ body{
 .loginForm{
     display: grid;
     grid-template-columns: 60% 40%;
-    background-image: url("../image/loginBackground.jpg");
+    background-image: url("../IMAGES/loginBackground.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     max-width: 75%;
