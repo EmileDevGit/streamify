@@ -13,7 +13,7 @@
     <main>
         <div class="playlistHead">
             <div class="imageContainer">
-                <img src="../image/playlistcover.jpg" alt="playlistCover">
+                <img src="IMAGES/playlistcover.jpg" alt="playlistCover">
             </div>
             <div class="playlistInfo">
                 <h1>Titre de la playlist</h1>
@@ -28,7 +28,7 @@
         <div class="songs">
             <div class="songElement">
                 <div class="songImageContainer">
-                    <img src="../image/" alt="songImage">
+                    <img src="IMAGES" alt="songImage">
                 </div>
                 <div class="songInfo">
                     <h3>Titre de la chanson</h3>
@@ -38,7 +38,7 @@
             </div>
             <div class="songElement">
                 <div class="songImageContainer">
-                    <img src="../image/" alt="songImage">
+                    <img src="IMAGES" alt="songImage">
                 </div>
                 <div class="songInfo">
                     <h3>Titre de la chanson</h3>
@@ -48,7 +48,7 @@
             </div>
             <div class="songElement">
                 <div class="songImageContainer">
-                    <img src="../image/" alt="songImage">
+                    <img src="IMAGES" alt="songImage">
                 </div>
                 <div class="songInfo">
                     <h3>Titre de la chanson</h3>

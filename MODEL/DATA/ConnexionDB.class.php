@@ -1,11 +1,9 @@
 <?php
 include_once("config/DBconf.interface.php");
 
-
-
     class ConnexionDB{
-
-        private $instance = null;
+ 
+        private static $instance = null;
 
         private function __construct(){
         }
@@ -25,9 +23,10 @@ include_once("config/DBconf.interface.php");
             return self::$instance;
         }
 
-
-
-
+        public static function close(){
+            self::$instance=null;
+        }
+        
     }
 
 
