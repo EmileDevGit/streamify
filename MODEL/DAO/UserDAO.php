@@ -25,7 +25,6 @@ class UserDAO implements DAO{
         } else {
             $user = new User(
                 $e['userID'],
-                $e['username'],
                 $e['password'],
                 $e['email']
             );
@@ -45,13 +44,12 @@ class UserDAO implements DAO{
         }
         $tabUsers=[];
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM users WHERE username LIKE '%".$filtre."%'");
+        $query = $connexion->prepare("SELECT * FROM users WHERE userID LIKE '%".$filtre."%'");
         // Exécution de la requête et assemblage du tableau d'utilisateurs
         $query->execute();
         foreach($query as $e){
             $user = new User(
                 $e['userID'],
-                $e['username'],
                 $e['password'],
                 $e['email']
             );
@@ -79,7 +77,6 @@ class UserDAO implements DAO{
         foreach($query as $e){
             $user = new User(
                 $e['userID'],
-                $e['username'],
                 $e['password'],
                 $e['email']
             );
@@ -100,17 +97,17 @@ class UserDAO implements DAO{
             throw new Exception("Impossible d’obtenir la connexion à la BD."); 
         }
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO users(userID, username, password, email) VALUES (?,?,?,?)");
+        $query = $connexion->prepare("INSERT INTO users(userID, password, email) VALUES (?,?,?)");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array
-                                    (  
+                                    (
                                         $user->getUserID(),
-                                        $user->getUsername(),
                                         $user->getPassword(), 
                                         $user->getEmail()
                                     )
                                 );
     }
+    // Modifier pour email-password
     public static function modifier($user):bool{
         // Connexion à la base de données
         try {
@@ -119,14 +116,31 @@ class UserDAO implements DAO{
             throw new Exception("Impossible d’obtenir la connexion à la BD."); 
         }
         // Préparation de la requête
-        $query = $connexion->prepare("UPDATE users SET username=?, password=?, email=? WHERE userID = ?");
+        $query = $connexion->prepare("UPDATE users SET password=?, email=? WHERE userID = ?");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array
                                     (
-                                        $user->getUsername(),
                                         $user->getPassword(), 
                                         $user->getEmail(),
                                         $user->getUserID()
+                                    )
+                                );
+    }
+    // Méthode additionnelle pour username
+    public static function modifierUserID($user):bool{
+        // Connexion à la base de données
+        try {
+            $connexion=ConnexionDB::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+        }
+        // Préparation de la requête
+        $query = $connexion->prepare("UPDATE users SET userID=? WHERE email = ?");
+        // Exécution de la requête et retour du résultat true|false
+        return $query->execute(array
+                                    (
+                                        $user->getUserID(),
+                                        $user->getEmail()
                                     )
                                 );
     }
@@ -138,7 +152,7 @@ class UserDAO implements DAO{
             throw new Exception("Impossible d’obtenir la connexion à la BD."); 
         }
         // Préparation de la requête
-        $query = $connexion->prepare("DELETE FROM users WHERE userID = ?");
+        $query = $connexion->prepare("DELETE FROM users WHERE userID LIKE ?");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array($user->getUserID()));
     }

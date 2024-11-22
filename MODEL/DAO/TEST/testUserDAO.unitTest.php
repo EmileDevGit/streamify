@@ -4,10 +4,10 @@
     include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\UserDAO.php");
 ?>
 <br>
-<h3>Méthode chercher() [userID = u3]</h3>
+<h3>Méthode chercher() [username = Emile]</h3>
 <p>
     <?php  
-    $userID = "u3";
+    $userID = "Emile";
     $user = UserDAO::chercher($userID);
     echo $user->toString();   ?>
 </p>
@@ -31,10 +31,10 @@
     }
     ?>
 </p>
-<h3>Méthode inserer() [#u6-addedUser-none-none]</h3>
+<h3>Méthode inserer() [addedUser-none-none]</h3>
 <p>
     <?php
-    $user = new User("u6","addedUser", "none", "none");
+    $user = new User("addedUser", "none", "none");
     echo UserDAO::inserer($user)?$user->toString()." à été ajouté" : "User déjà existant";
     echo "<br>";
     echo "<br><em>Voici la nouvelle liste de tous les Users</em><br>";
@@ -44,14 +44,22 @@
     }
     ?>
 </p>
-<h3>Méthode modifier() [#u6-moddedUser-none-none]</h3>
+<h3>Méthode modifier() [addedUser-newPassword-new@email.com]</h3>
 <p>
     <?php
-    $user->setUsername("moddedUser");
+    $user->setPassword("newPassword");
+    $user->setEmail("new@email.com");
     echo UserDAO::modifier($user)?$user->toString()." à été modifié" : "User inexistant";
     ?>
 </p>
-<h3>Méthode retirer() [delete #u6-moddedUser-none-none]</h3>
+<h3>Méthode modifierUsername() [newUsername-newPassword-new@email.com]</h3>
+<p>
+    <?php
+    $user->setUserID("newUsername");
+    echo UserDAO::modifierUserID($user)?$user->toString()." à été modifié" : "User inexistant";
+    ?>
+</p>
+<h3>Méthode retirer() [delete moddedUser]</h3>
 <p>
     <?php
     echo UserDAO::supprimer($user)?$user->toString()." à été supprimé" : "User inexistant";
