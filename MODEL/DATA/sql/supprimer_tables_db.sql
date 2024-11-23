@@ -13,5 +13,8 @@ DROP TABLE users;
 DELETE FROM songs;
 DROP TABLE songs;
 
+DELETE FROM artiste;
+DROP TABLE artiste;
+
 DROP DATABASE streamify;
 
