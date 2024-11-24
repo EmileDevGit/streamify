@@ -51,3 +51,13 @@ INSERT INTO artiste VALUES ('a2', 'Christina_Aguilera');
 INSERT INTO artiste VALUES ('a3', 'Usher');
 INSERT INTO artiste VALUES ('a4', 'Spice_Girls');
 
+
+CREATE TABLE admin (
+adminID    VARCHAR(50),
+password   VARCHAR(50),
+email      VARCHAR(50)
+);
+ALTER TABLE admin ADD PRIMARY KEY(adminID);
+INSERT INTO admin VALUES ('admin','admin','admin@gmail.com');
+
+
