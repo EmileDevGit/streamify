@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/AdminProfile.css">
+    <link rel="stylesheet" href="CSS/adminProfileStyle.css">
     <title>Admin - Profile</title>
 </head>
 <body>
-    <?php include_once("commons/header.inc.php");?>
+    <header>Administration</header>
     <main>
-        <p>Cette page d'admin sera implémentée lors de la programmation car il nous manque des détails sur le fonctionnement de l'Administrateur</p>
-
+        <div class="container">
+            <a href="manageUsers.php" class="button">Gestion des utilisateurs</a>
+            <a href="manageArtist.php" class="button">Gestion des artiste</a>
+            <a href="managePlaylist.php" class="button">Gestion des playlist</a>
+            <a href="manageSong.php" class="button">Gestion des musique</a>
+        </div>
     </main>
 </body>
 </html>

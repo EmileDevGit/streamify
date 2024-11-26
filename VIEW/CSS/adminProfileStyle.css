@@ -1,12 +1,75 @@
 @import url("commons/catppucin_DarkMode.inc.css");
-@import url("commons/header.inc.css");
 @import url("commons/mediaPlayer.inc.css");
 
+
 body {
-    background-color: var(--base);
-    color: var(--text);
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: system-ui;;
+    font-family: system-ui;
+    background-color: var(--base);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    background-color: var(--mantle);
+    color: var(--rosewater);
+    font-size: 2em;
+    font-weight: bold;
+    border-bottom: 2px solid var(--surface0);
+    box-shadow: 0 4px 8px black;
+}
+
+.container {
+    background-color: var(--surface1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+.button {
+    display: inline-block;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text);
+    background-color: var(--blue);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px black;
+}
+
+.button:hover {
+    background-color: var(--mauve);
+    transform: scale(1.05);
+}
+
+.button:active {
+    background-color: var(--lavander);
+}
+
+@media (max-width: 600px) {
+    header {
+        font-size: 1.8em;
+    }
+
+    .button {
+        font-size: 1em;
+    }
 }
