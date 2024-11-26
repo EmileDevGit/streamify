@@ -28,7 +28,8 @@ class UserDAO implements DAO{
                 $e['songID'],
                 $e['artistID'],
                 $e['playTime'],
-                $e['timesPlayed']
+                $e['timesPlayed'],
+                $e['imageFileName']
             );
         }
         // Fermeture de la connexion à la DB
@@ -56,7 +57,8 @@ class UserDAO implements DAO{
                 $e['songID'],
                 $e['artistID'],
                 $e['playTime'],
-                $e['timesPlayed']
+                $e['timesPlayed'],
+                $e['imageFileName']
             );
             $tabSongs[] = $song;
         }
@@ -88,7 +90,8 @@ class UserDAO implements DAO{
                 $e['songID'],
                 $e['artistID'],
                 $e['playTime'],
-                $e['timesPlayed']
+                $e['timesPlayed'],
+                $e['imageFileName']
             );
             $tabSongs[] = $song;
         }
@@ -110,7 +113,7 @@ class UserDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO song(songID, artistID, playTime, timesPlayed) VALUES (?,?,?,?)");
+        $query = $connexion->prepare("INSERT INTO song(songID, artistID, playTime, timesPlayed, imageFileName) VALUES (?,?,?,?,?)");
 
         // Exécution de la requête
         $retour = $query->execute(array
@@ -118,7 +121,8 @@ class UserDAO implements DAO{
                                         $song->getSongID(),
                                         $song->getArtistID(), 
                                         $song->getPlayTime(),
-                                        $song->getTimesPlayed()
+                                        $song->getTimesPlayed(),
+                                        $song->getImageFileName()
                                     )
                                 );
 

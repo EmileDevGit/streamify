@@ -8,16 +8,18 @@
         private $timesPlayed;
         private $userID;
         private $public = false;
+        private $imageFileName;
         private $tabSongs;
 
 
          // Constructor
-         public function __construct($playlistID, $timesPlayed, $userID, $public, $tabSongs){
+         public function __construct($playlistID, $timesPlayed, $userID, $public, $imageFileName, $tabSongs){
 
             $this->playlistID = $playlistID;
             $this->timesPlayed = $timesPlayed;
             $this->userID = $userID;
             $this->public = $public;
+            $this->imageFileName = $imageFileName;
             $this->tabSongs = $tabSongs;
 
          }
@@ -35,6 +37,10 @@
          public function getVisibility():bool{
             return $this->public;
         }
+        public function getImageFileName():string{
+            return $this->imageFileName;
+        }
+
  
          // Setters
          public function setVisibility($bool){
@@ -45,12 +51,6 @@
          //}
  
          // Methods
-         public function ajouterChanson(){
-         }
- 
-         public function retirerChanson(){
- 
-         }
  
          public function toString():string{
              return "[ Nom: " .$this->playlistID ." | User: " .$this->userID ." ]";

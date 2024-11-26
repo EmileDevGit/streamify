@@ -7,14 +7,17 @@
         private $artistID;
         private $playTime;
         private $timesPlayed;
+        private $imageFileName;
 
         // Constructor
-        public function __construct($songID, $artistID, $playTime, $timesPlayed){
+        public function __construct($songID, $artistID, $playTime, $timesPlayed, $imageFileName){
 
             $this->songID = $songID;
             $this->artistID = $artistID;
             $this->playTime = $playTime;
             $this->timesPlayed = $timesPlayed;
+            $this->imageFileName = $imageFileName;
+
 
         }
 
@@ -30,6 +33,9 @@
         }
         public function getTimesPlayed():int{
             return $this->timesPlayed;
+        }
+        public function getImageFileName():string{
+            return $this->imageFileName;
         }
 
         // Setters

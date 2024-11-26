@@ -6,14 +6,16 @@
         private $userID;
         private $password;
         private $email;
+        private $imageFileName;
         //private array $tabPlaylists;
 
         // Constructor
-        public function __construct($userID, $password, $email){
+        public function __construct($userID, $password, $email, $imageFileName){
 
             $this->userID = $userID;
             $this->password = $password;
             $this->email = $email;
+            $this->imageFileName=$imageFileName;
 
         }
 
@@ -27,6 +29,9 @@
         public function getEmail():string{
             return $this->email;
         }
+        public function getImageFileName():string{
+            return $this->imageFileName;
+        }
 
         // Setters
         public function setUserID($userID){
@@ -38,13 +43,8 @@
         public function setEmail($email){
             $this->email=$email;
         }
-
-        // Methods
-        public function ajouterPlaylist(){
-        }
-
-        public function retirerPlaylist(){
-
+        public function setImageFileName($imageFileName){
+            $this->imageFileName = $imageFileName;
         }
 
         public function toString():string{

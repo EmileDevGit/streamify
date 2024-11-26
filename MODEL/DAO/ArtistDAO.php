@@ -1,7 +1,7 @@
 <?php 
 
 include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
-include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\CLASS\artiste.class.php");
+include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\CLASS\Artist.class.php");
 
 class ArtisteDAO implements DAO {
 
@@ -70,7 +70,7 @@ class ArtisteDAO implements DAO {
         }
         $tabArtistes = [];
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artiste");
+        $query = $connexion->prepare("SELECT * FROM artist");
         // Exécution de la requête et assemblage du tableau d'artistes
         $query->execute();
         foreach ($query as $e) {

@@ -29,7 +29,8 @@ class UserDAO implements DAO{
             $user = new User(
                 $e['userID'],
                 $e['password'],
-                $e['email']
+                $e['email'],
+                $e['imageFileName']
             );
         }
 
@@ -59,7 +60,8 @@ class UserDAO implements DAO{
             $user = new User(
                 $e['userID'],
                 $e['password'],
-                $e['email']
+                $e['email'],
+                $e['imageFileName']
             );
             $tabUsers[] = $user;
         }
@@ -90,7 +92,8 @@ class UserDAO implements DAO{
             $user = new User(
                 $e['userID'],
                 $e['password'],
-                $e['email']
+                $e['email'],
+                $e['imageFileName']
             );
             $tabUsers[] = $user;
         }
@@ -112,14 +115,15 @@ class UserDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO users(userID, password, email) VALUES (?,?,?)");
+        $query = $connexion->prepare("INSERT INTO users(userID, password, email, imageFileName) VALUES (?,?,?,?)");
 
         // Exécution de la requête
         $retour = $query->execute(array
                                     (
                                         $user->getUserID(),
                                         $user->getPassword(), 
-                                        $user->getEmail()
+                                        $user->getEmail(),
+                                        $user->getImageFileName()
                                     )
                                 );
         
@@ -130,7 +134,7 @@ class UserDAO implements DAO{
         // Retour du résultat true|false
         return $retour;
     }
-    // Modifier pour email-password
+    // Modifier pour email-password-photoProfil
     public static function modifier($user):bool{
 
         // Connexion à la base de données
@@ -141,13 +145,14 @@ class UserDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("UPDATE users SET password=?, email=? WHERE userID = ?");
+        $query = $connexion->prepare("UPDATE users SET password=?, email=?, imageFileName=? WHERE userID = ?");
         
         // Exécution de la requête
         $retour = $query->execute(array
                                     (
                                         $user->getPassword(), 
                                         $user->getEmail(),
+                                        $user->getImageFileName(),
                                         $user->getUserID()
                                     )
                                 );
