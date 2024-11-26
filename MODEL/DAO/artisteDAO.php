@@ -1,7 +1,7 @@
 <?php 
 
-include_once("C:\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\DAO.interface.php");
-include_once("C:\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\CLASS\artiste.class.php");
+include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
+include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\CLASS\artiste.class.php");
 
 class ArtisteDAO implements DAO {
 

@@ -7,11 +7,14 @@
 #
 USE streamify;
 
-DELETE FROM users;
-DROP TABLE users;
+DELETE FROM user;
+DROP TABLE user;
 
-DELETE FROM songs;
-DROP TABLE songs;
+DELETE FROM playlist;
+DROP TABLE plsylist;
+
+DELETE FROM song;
+DROP TABLE song;
 
 DELETE FROM artiste;
 DROP TABLE artiste;

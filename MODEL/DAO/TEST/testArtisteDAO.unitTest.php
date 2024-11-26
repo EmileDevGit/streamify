@@ -1,6 +1,6 @@
 <h1>[TEST] ArtisteDAO</h1>
 <?php
-    include_once("C:\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\artisteDAO.php");
+    include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\artisteDAO.php");
 ?>
 <br>
 <h3>Méthode chercher()</h3>

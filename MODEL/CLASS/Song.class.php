@@ -4,21 +4,15 @@
         
         // Attributes
         private $songID;
-        private $name;
-        private $artistID; //pourrait être Artist object...?
-        private $feature;
+        private $artistID;
         private $playTime;
         private $timesPlayed;
 
-        //private array $tabPlaylists;
-
         // Constructor
-        public function __construct($songID,$name, $artistID, $feature, $playTime, $timesPlayed){
+        public function __construct($songID, $artistID, $playTime, $timesPlayed){
 
             $this->songID = $songID;
-            $this->name = $name;
             $this->artistID = $artistID;
-            $this->feature = $feature;
             $this->playTime = $playTime;
             $this->timesPlayed = $timesPlayed;
 
@@ -28,14 +22,8 @@
         public function getSongID():string{
             return $this->songID;
         }
-        public function getName():string{
-            return $this->name;
-        }
         public function getArtistID():string{
             return $this->artistID;
-        }
-        public function getFeature():bool{
-            return $this->feature;
         }
         public function getPlayTime():string{
             return $this->playTime;
@@ -52,7 +40,7 @@
         // Methods
 
         public function toString():string{
-            return "[ #" .$this->songID ." | Nom: " .$this->name ." ]";
+            return "[ " .$this->songID ." | Artiste: " .$this->artistID ." ]";
         }
 
 
