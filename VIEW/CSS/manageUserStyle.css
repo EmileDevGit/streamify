@@ -1,0 +1,108 @@
+@import url("commons/catppucin_DarkMode.inc.css");
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    background-color: var(--base);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100%;
+}
+
+
+
+/* Conteneur principal */
+main {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--rosewater);
+}
+
+.form-container {
+    background-color: var(--surface0);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Labels */
+.form-container label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+/* Champs de saisie */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container input[type="file"],
+.form-container select {
+    background-color: var(--surface1);
+    color: var(--text);
+    border: 1px solid var(--overlay0);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="file"]:focus,
+.form-container select:focus {
+    border-color: var(--blue);
+}
+
+/* Bouton */
+.button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-add {
+    background-color: var(--green);
+    color: var(--surface0);
+}
+
+.button-add:hover {
+    background-color: var(--teal);
+    transform: scale(1.05);
+}
+
+.button-add:active {
+    background-color: var(--mauve);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        font-size: 1.8rem;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container input,
+    .form-container select {
+        font-size: 0.9rem;
+    }
+}

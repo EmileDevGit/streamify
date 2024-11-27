@@ -10,10 +10,11 @@
     <header>Administration</header>
     <main>
         <div class="container">
-            <a href="manageUsers.php" class="button">Gestion des utilisateurs</a>
-            <a href="manageArtist.php" class="button">Gestion des artiste</a>
-            <a href="managePlaylist.php" class="button">Gestion des playlist</a>
-            <a href="manageSong.php" class="button">Gestion des musique</a>
+            <a href="manageSearch.php" class="button">Recherche</a>
+            <a href="manageUsers.php" class="button">Ajoue utilisateurs</a>
+            <a href="manageArtiste.php" class="button">Ajoue artiste</a>
+            <a href="manageAlbum.php" class="button">Ajoue album</a>
+            <a href="manageSong.php" class="button">Ajoue musique</a>
         </div>
     </main>
 </body>

@@ -1,0 +1,114 @@
+@import url("commons/catppucin_DarkMode.inc.css");
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    background-color: var(--base);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--rosewater);
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: var(--surface0);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.form-container select,
+.form-container input[type="text"] {
+    background-color: var(--surface1);
+    color: var(--text);
+    border: 1px solid var(--overlay0);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-container select:focus,
+.form-container input[type="text"]:focus {
+    border-color: var(--blue);
+}
+
+.button {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+}
+
+.button-search {
+    background-color: var(--green);
+    color: var(--surface0);
+}
+
+.button-search:hover {
+    background-color: var(--teal);
+    transform: scale(1.05);
+}
+
+.button-search:active {
+    background-color: var(--mauve);
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-container label {
+        font-size: 1rem;
+    }
+
+    .form-container select,
+    .form-container input {
+        font-size: 0.9rem;
+    }
+
+    .button {
+        font-size: 1rem;
+    }
+}
