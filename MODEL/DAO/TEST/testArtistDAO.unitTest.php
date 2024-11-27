@@ -1,12 +1,12 @@
 <h1>[TEST] ArtisteDAO</h1>
 <?php
-    include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\artisteDAO.php");
+    include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\ArtistDAO.php");
 ?>
 <br>
 <h3>Méthode chercher()</h3>
 <p>
     <?php  
-    $artisteID = "a1";
+    $artisteID = "Usher";
     $artiste = ArtisteDAO::chercher($artisteID);
     echo $artiste->toString();   
     ?>
@@ -33,7 +33,7 @@
 <h3>Méthode inserer()</h3>
 <p>
     <?php
-    $artiste = new Artiste("a5", "DAMSO");
+    $artiste = new Artiste("ENIGMA", "noImage");
     echo ArtisteDAO::inserer($artiste) ? $artiste->toString() . " a été ajouté" : "Artiste déjà existant";
     echo "<br>";
     echo "<br><em>Voici la nouvelle liste de tous les Artistes</em><br>";
@@ -46,7 +46,7 @@
 <h3>Méthode modifier()</h3>
 <p>
     <?php
-    $artiste->setName("DEMS");
+    $artiste->setArtisteID("DEMS");
     echo ArtisteDAO::modifier($artiste) ? $artiste->toString() . " a été modifié" : "Artiste inexistant";
     ?>
 </p>

@@ -11,112 +11,72 @@ CREATE DATABASE streamify DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE streamify;
 
 -- Table des Users
-CREATE TABLE user (
-  userID      VARCHAR(50),
-  password    VARCHAR(50),
-  email	      VARCHAR(50),
-  imageFileName VARCHAR(50),
-  PRIMARY KEY(userID)
+CREATE TABLE utilisateurs (
+  userID          AUTO_INCREMENT,
+  username        VARCHAR(50),
+  password        VARCHAR(50),
+  email	          VARCHAR(50),
+  adminStatus     TINYINT,
+  imageFileName   VARCHAR(50),
 );
 
-INSERT INTO user VALUES ('Emile', 'passwd', 'emile01@gmail.com', '');
-INSERT INTO user VALUES ('Antoine', 'passwd', 'antoine08@gmail.com', '');
-INSERT INTO user VALUES ('Melanie', 'passwd', 'melAnn@gmail.com', '');
-INSERT INTO user VALUES ('Lord', 'passwd', 'milord@gmail.com', '');
-INSERT INTO user VALUES ('Julie', 'passwd', 'juju@gmail.com', '');
-
+-- Table des Artiste
+CREATE TABLE artistes (
+  artistID        AUTO_INCREMENT,
+  artistName      VARCHAR(50),
+  imageFileName   VARCHAR(50),
+);
 
 -- Table des playlists
-CREATE TABLE playlist (
-  playlistID        VARCHAR(50),
+CREATE TABLE playlists (
+  playlistID        AUTO_INCREMENT,
+  playlistName      VARCHAR(50),
   timesPlayed       INT,
-  userID            VARCHAR(50),
   public            TINYINT,
-  imageFileName VARCHAR(50),
-  PRIMARY KEY(playlistID),
-  FOREIGN KEY(userID) REFERENCES user(userID)
+  imageFileName     VARCHAR(50),
+  userID            VARCHAR(50),
 );
 
-INSERT INTO playlist VALUES ('Beats to relax and study', 83, 'Emile', FALSE, '');
-INSERT INTO playlist VALUES ('Roadtrip', 69, 'Antoine', TRUE, '');
-INSERT INTO playlist VALUES ('Chill', 12, 'Julie', FALSE, '');
-INSERT INTO playlist VALUES ('Friday night out', 152, 'Melanie', TRUE, '');
-
 -- Table des Chansons
-CREATE TABLE song (
-  songID        VARCHAR(50),
-  artistID      VARCHAR(50),
+CREATE TABLE songs (
+  songID        AUTO_INCREMENT,
+  songName      VARCHAR(50),
   playTime      VARCHAR(50), 
   timesPlayed   INT,
   imageFileName VARCHAR(50),
-  PRIMARY KEY (songID),
-  FOREIGN KEY(artistID) REFERENCES artist(artistID)
+  mediaFileName VARCHAR(50),
+  artistID      VARCHAR(50),
 );
 
-INSERT INTO song VALUES ('Knee Socks', 'Arctic Monkey', '4:17',96, '');
-INSERT INTO song VALUES ('505', 'Arctic Monkey','4:13',69);
-INSERT INTO song VALUES ('Genie In a Bottle', 'Christina Aguilera', '3:37',26, '');
-INSERT INTO song VALUES ('Yeah!', 'Usher', '4:12',153, '');
-INSERT INTO song VALUES ('Wannabe', 'Spice Girls', '3:22',8, '');
+-- Table des albums
+CREATE TABLE albums (
+  albumID        VARCHAR(50),
+  albumName      VARCHAR(50),
+  imageFileName  VARCHAR(50),
+  artistID       VARCHAR(50),
+);
 
--- Table d'Association Playlists - Chansons
+-- Insertion des valeurs de test
+INSERT INTO users VALUES ();
+
+INSERT INTO artistes VALUES ();
+
+INSERT INTO playlists VALUES ();
+
+INSERT INTO songs VALUES ();
+
+INSERT INTO album VALUES ();
+
+-- Table d'Association 
+
+-- Playlists - Chansons
 CREATE TABLE playlist_song (
   playlistID    VARCHAR(50),
   songID        VARCHAR(50),
-  FOREIGN KEY(playlistID) REFERENCES playlist(playlistID),
-  FOREIGN KEY(songID) REFERENCES song(songID)
 );
 
-INSERT INTO playlist_song VALUES ('Beats to relax and study', 'Knee Socks');
-INSERT INTO playlist_song VALUES ('Beats to relax and study', '505');
-INSERT INTO playlist_song VALUES ('Beats to relax and study', 'Wannabe');
-INSERT INTO playlist_song VALUES ('Beats to relax and study', 'Yeah!');
-INSERT INTO playlist_song VALUES ('Roadtrip', 'Genie In a Bottle');
-INSERT INTO playlist_song VALUES ('Roadtrip', 'Yeah!');
-INSERT INTO playlist_song VALUES ('Roadtrip', '505');
-INSERT INTO playlist_song VALUES ('Chill', 'Knee Socks');
-INSERT INTO playlist_song VALUES ('Chill', '505');
-INSERT INTO playlist_song VALUES ('Chill', 'Genie In a Bottle');
-INSERT INTO playlist_song VALUES ('Friday night out', 'Yeah!');
-INSERT INTO playlist_song VALUES ('Friday night out', 'Genie In a Bottle');
-INSERT INTO playlist_song VALUES ('Friday night out', 'Wannabe');
+INSERT INTO playlist_song VALUES ();
 
 
--- Table des Artiste
-CREATE TABLE artist (
-  artistID        VARCHAR(50),
-  imageFileName   VARCHAR(50),
-  PRIMARY KEY (artistID)
-);
-
-INSERT INTO artist VALUES ('Arctic_Monkey','');
-INSERT INTO artist VALUES ('Christina_Aguilera','');
-INSERT INTO artist VALUES ('Usher','');
-INSERT INTO artist VALUES ('Spice_Girls','');
-
---Table des albums
-CREATE TABLE album (
-  albumID        VARCHAR(50),
-  artistID       VARCHAR(50),
-  imageFileName  VARCHAR(50)
-  PRIMARY KEY (albumID),
-  FOREIGN KEY(artistID) REFERENCES artist(artistID)
-);
-
-INSERT INTO album VALUES ('', 'Arctic_Monkey','');
-INSERT INTO album VALUES ('', 'Christina_Aguilera','');
-INSERT INTO album VALUES ('', 'Usher','');
-INSERT INTO album VALUES ('', 'Spice_Girls','');
-
-
--- Table d'Administrateur
-CREATE TABLE admin (
-  adminID    VARCHAR(50),
-  password   VARCHAR(50),
-  email      VARCHAR(50),
-  PRIMARY KEY(adminID)
-);
-
-INSERT INTO admin VALUES ('admin','admin','admin@gmail.com');
 
 

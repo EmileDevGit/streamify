@@ -1,6 +1,6 @@
 <h1>[TEST] AdminDAO</h1>
 <?php
-    include_once("C:\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\adminDAO.php");
+    include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\adminDAO.php");
 
 ?>
 <br>

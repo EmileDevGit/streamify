@@ -5,7 +5,7 @@ include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL
 include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\CLASS\Song.class.php");
 
 
-class UserDAO implements DAO{
+class SongDAO implements DAO{
 
     // Méthodes DAO
     public static function chercher(string $songID):?object{
@@ -187,6 +187,47 @@ class UserDAO implements DAO{
         // Retour du résultat true|false
         return $retour;
     }
+
+    // Méthode additionelles
+    public static function remplirPlaylist(string $playlistID):array{
+        // Connexion à la base de données & Initialisation
+        try {
+           $connexion=ConnexionDB::getInstance();
+       } catch (Exception $e) {
+           throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+       }
+       $tabSongs=[];
+
+       // Préparation de la requête
+       $query = $connexion->prepare("   SELECT song.* 
+                                        FROM song, playlist, playlist_song
+                                        WHERE song.songID LIKE playlist_song.songID AND playlist_song.playlistID LIKE playlist.playlistID
+                                        AND playlist_song.playlistID LIKE '".$playlistID ."'");
+
+       // Exécution de la requête et assemblage du tableau d'utilisateurs
+       $query->execute();
+       foreach($query as $e){
+           $song = new Song(
+               $e['songID'],
+               $e['artistID'],
+               $e['playTime'],
+               $e['timesPlayed'],
+               $e['imageFileName']
+           );
+           $tabSongs[] = $song;
+       }
+
+       // Fermeture de la connexion à la DB
+       $query->closeCursor();
+       ConnexionDB::close();
+       
+       //Renvoie du tableau des User trouvés
+       return $tabSongs;
+   }
+
+   public static function remplirAlbum(){
+    
+   }
 
 }
 

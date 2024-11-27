@@ -5,56 +5,67 @@
 
          // Attributes
         private $playlistID;
+        private $playlistName;
         private $timesPlayed;
-        private $userID;
-        private $public = false;
+        private $public;
         private $imageFileName;
+        private $userID;
+
         private $tabSongs;
 
 
-         // Constructor
-         public function __construct($playlistID, $timesPlayed, $userID, $public, $imageFileName, $tabSongs){
+        // Constructor
+        public function __construct($playlistID, $playlistName, $timesPlayed, $public, $imageFileName, $tabSongs, $userID){
 
             $this->playlistID = $playlistID;
+            $this->playlistName = $playlistName;
             $this->timesPlayed = $timesPlayed;
-            $this->userID = $userID;
             $this->public = $public;
             $this->imageFileName = $imageFileName;
             $this->tabSongs = $tabSongs;
+            $this->userID = $userID;
 
-         }
+        }
  
          // Getters
-         public function getUserID():string{
-             return $this->userID;
-         }
-         public function getPlaylistID():string{
-             return $this->playlistID;
-         }
+        public function getPlaylistID():int{
+            return $this->playlistID;
+        }
+        public function getPlaylistName():string{
+        return $this->playlistName;
+        }
          public function getTimesPlayed():int{
              return $this->timesPlayed;
-         }
-         public function getVisibility():bool{
-            return $this->public;
+        }
+        public function getVisibility():bool{
+        return $this->public;
         }
         public function getImageFileName():string{
             return $this->imageFileName;
         }
+        public function getTabSongs():string{
+            return $this->tabSongs;
+        }
+        public function getUserID():string{
+            return $this->userID;
+        }
 
- 
          // Setters
-         public function setVisibility($bool){
-             $this->public=$bool;
-         }
-         // public function setPlaylistID($playlistID){
-         //   $this->playlistID=$playlistID;
-         //}
- 
-         // Methods
- 
-         public function toString():string{
-             return "[ Nom: " .$this->playlistID ." | User: " .$this->userID ." ]";
-         }
+        public function setPlaylistName($playlistName){
+            $this->playlistName=$playlistName;
+        }
+        public function setVisibility($bool){
+            $this->public=$bool;
+        }
+         public function setImageFileName($imageFileName) {
+            $this->imageFileName = $imageFileName;
+        }
+        
+        // Methods
+
+        public function toString():string{
+            return "[ Nom de playlist: " .$this->playlistName ." | User: #" .$this->userID ." ]";
+        }
 
 
 

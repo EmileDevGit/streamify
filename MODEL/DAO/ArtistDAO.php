@@ -15,7 +15,7 @@ class ArtisteDAO implements DAO {
         }
         $artiste = null;
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artiste WHERE artisteID LIKE ?");
+        $query = $connexion->prepare("SELECT * FROM artist WHERE artistID LIKE ?");
         $query->execute(array($artisteID));
         $e = $query->fetch();
         // Validation du résultat & création de l'objet Artiste
@@ -23,8 +23,8 @@ class ArtisteDAO implements DAO {
             throw new Exception("L'artiste n'existe pas");
         } else {
             $artiste = new Artiste(
-                $e['artisteID'],
-                $e['name']
+                $e['artistID'],
+                $e['imageFileName']
             );
         }
         // Fermeture de la connexion à la DB
@@ -43,13 +43,13 @@ class ArtisteDAO implements DAO {
         }
         $tabArtistes = [];
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artiste WHERE name LIKE '%" . $filtre . "%'");
+        $query = $connexion->prepare("SELECT * FROM artist WHERE artistID LIKE '%" . $filtre . "%'");
         // Exécution de la requête et assemblage du tableau d'artistes
         $query->execute();
         foreach ($query as $e) {
             $artiste = new Artiste(
-                $e['artisteID'],
-                $e['name']
+                $e['artistID'],
+                $e['imageFileName']
             );
             $tabArtistes[] = $artiste;
         }
@@ -75,8 +75,8 @@ class ArtisteDAO implements DAO {
         $query->execute();
         foreach ($query as $e) {
             $artiste = new Artiste(
-                $e['artisteID'],
-                $e['name']
+                $e['artistID'],
+                $e['imageFileName']
             );
             $tabArtistes[] = $artiste;
         }
@@ -96,11 +96,11 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO artiste(artisteID, name) VALUES (?, ?)");
+        $query = $connexion->prepare("INSERT INTO artist(artistID, imageFileName) VALUES (?, ?)");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array(
             $artiste->getArtisteID(),
-            $artiste->getName()
+            $artiste->getImageFileName()
         ));
     }
 
@@ -112,10 +112,10 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("UPDATE artiste SET name = ? WHERE artisteID = ?");
+        $query = $connexion->prepare("UPDATE artist SET imageFileName = ? WHERE artistID = ?");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array(
-            $artiste->getName(),
+            $artiste->getImageFileName(),
             $artiste->getArtisteID()
         ));
     }
@@ -128,7 +128,7 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("DELETE FROM artiste WHERE artisteID LIKE ?");
+        $query = $connexion->prepare("DELETE FROM artist WHERE artistID LIKE ?");
         // Exécution de la requête et retour du résultat true|false
         return $query->execute(array($artiste->getArtisteID()));
     }

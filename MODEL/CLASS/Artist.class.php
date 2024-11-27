@@ -3,36 +3,39 @@
 class Artiste {
 
     // Attributs
-    private $artisteID;
+    private $artistID;
+    private $artistName;
     private $imageFileName;
 
     // Constructeur
-    public function __construct($artisteID, $imageFileName) {
-        $this->artisteID = $artisteID;
+    public function __construct($artistID, $artistName, $imageFileName) {
+        $this->artistID = $artistID;
+        $this->artistName = $artistName;
         $this->imageFileName = $imageFileName;
     }
 
     // Getters
-    public function getArtisteID(): string {
-        return $this->artisteID;
+    public function getArtisteID(): int {
+        return $this->artistID;
     }
-
+    public function getArtisteName(): string {
+        return $this->artistName;
+    }
     public function getImageFileName(): string {
         return $this->imageFileName;
     }
 
     // Setters
-    public function setArtisteID($artisteID) {
-        $this->artisteID = $artisteID;
+    public function setArtisteName($artistName) {
+        $this->artistName = $artistName;
     }
-
     public function setImageFileName($imageFileName) {
         $this->imageFileName = $imageFileName;
     }
 
     // Méthodes
     public function toString(): string {
-        return "[ Artiste: " . $this->artisteID . " | Photo: " . $this->imageFileName . " ]";
+        return "[ #" .$this->artistID . " | Nom: " . $this->artistName . " ]";
     }
 }
 

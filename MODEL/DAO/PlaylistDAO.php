@@ -1,5 +1,6 @@
 <?php 
     include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
+    include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\SongDAO.php");
     include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\CLASS\Playlist.class.php");
     
     
@@ -20,11 +21,12 @@
             $query->execute(array($playlistID));
             $e = $query->fetch();
 
-            // Validation du résultat & création de l'objet User
+            // Validation du résultat & création de l'objet Playlist
             if($query->rowCount()==0){
                 throw new Exception("La playlist n'existe pas");
             } else {
                 $tabSongs=[];
+                $tabSongs= SongDAO::remplirPlaylist($playlistID);
                 $playlist = new Playlist(
                     $e['playlistID'],
                     $e['timesPlayed'],
@@ -39,7 +41,7 @@
             $query->closeCursor();
             ConnexionDB::close();
 
-            //Renvoie du User trouvé
+            //Renvoie de la playlist trouvée
             return $playlist;
         }
         public static function chercherAvecFiltre(string $filtre):array{
@@ -59,6 +61,7 @@
             $query->execute();
             foreach($query as $e){
                 $tabSongs=[];
+                $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
                 $playlist = new Playlist(
                     $e['playlistID'],
                     $e['timesPlayed'],
@@ -93,7 +96,8 @@
             // Exécution de la requête et assemblage du tableau d'utilisateurs
             $query->execute();
             foreach($query as $e){
-                $tabSongs = [];
+                $tabSongs=[];
+                $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
                 $playlist = new Playlist(
                     $e['playlistID'],
                     $e['timesPlayed'],
@@ -194,6 +198,44 @@
             // Retour du résultat true|false
             return $retour;
         }
+
+        public static function collectPlaylist(string $userID){
+            $tabPlaylist = [];
+            // Connexion à la base de données & Initialisation
+            try {
+                $connexion=ConnexionDB::getInstance();
+            } catch (Exception $e) {
+                throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+            }
+            $tabPlaylist=[];
+
+            // Préparation de la requête
+            $query = $connexion->prepare("SELECT * FROM playlist WHERE userID LIKE '" .$userID ."'");
+
+            // Exécution de la requête et assemblage du tableau d'utilisateurs
+            $query->execute();
+            foreach($query as $e){
+                $tabSongs=[];
+                $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
+                $playlist = new Playlist(
+                    $e['playlistID'],
+                    $e['timesPlayed'],
+                    $e['userID'],
+                    $e['public'],
+                    $e['imageFileName'],
+                    $tabSongs
+                );
+                $tabPlaylist[] = $playlist;
+            }
+
+            // Fermeture de la connexion à la DB
+            $query->closeCursor();
+            ConnexionDB::close();
+            
+            //Renvoie du tableau des User trouvés
+            return $tabPlaylist;
+        }
+
     }
 
 

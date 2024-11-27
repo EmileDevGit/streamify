@@ -1,6 +1,7 @@
 <?php 
 
 include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
+include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\PlaylistDAO.php");
 include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\CLASS\User.class.php");
 
 
@@ -18,7 +19,7 @@ class UserDAO implements DAO{
         $user=null;
 
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM user WHERE userID LIKE ?");
+        $query = $connexion->prepare("SELECT * FROM users WHERE userID LIKE ?");
         $query->execute(array($userID));
         $e = $query->fetch();
 
@@ -26,11 +27,14 @@ class UserDAO implements DAO{
         if($query->rowCount()==0){
             throw new Exception("L'utilisateur n'existe pas");
         } else {
+            $tabPlaylist = [];
+            $tabPlaylist = PlaylistDAO::collectPlaylist($userID);
             $user = new User(
                 $e['userID'],
                 $e['password'],
                 $e['email'],
-                $e['imageFileName']
+                $e['imageFileName'],
+                $tabPlaylist
             );
         }
 
@@ -52,16 +56,19 @@ class UserDAO implements DAO{
         $tabUsers=[];
 
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM user WHERE userID LIKE '%".$filtre."%'");
+        $query = $connexion->prepare("SELECT * FROM users WHERE userID LIKE '%".$filtre."%'");
 
         // Exécution de la requête et assemblage du tableau d'utilisateurs
         $query->execute();
         foreach($query as $e){
+            $tabPlaylist = [];
+            $tabPlaylist = PlaylistDAO::collectPlaylist($e['userID']);
             $user = new User(
                 $e['userID'],
                 $e['password'],
                 $e['email'],
-                $e['imageFileName']
+                $e['imageFileName'],
+                $tabPlaylist
             );
             $tabUsers[] = $user;
         }
@@ -84,16 +91,19 @@ class UserDAO implements DAO{
         $tabUsers=[];
 
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM user");
+        $query = $connexion->prepare("SELECT * FROM users");
 
         // Exécution de la requête et assemblage du tableau d'utilisateurs
         $query->execute();
         foreach($query as $e){
+            $tabPlaylist = [];
+            $tabPlaylist = PlaylistDAO::collectPlaylist($e['userID']);
             $user = new User(
                 $e['userID'],
                 $e['password'],
                 $e['email'],
-                $e['imageFileName']
+                $e['imageFileName'],
+                $tabPlaylist
             );
             $tabUsers[] = $user;
         }

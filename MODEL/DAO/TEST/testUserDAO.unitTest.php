@@ -7,7 +7,7 @@
 <h3>Méthode chercher() [username = Emile]</h3>
 <p>
     <?php  
-    $userID = "Emile";
+    $userID = 'Julie';
     $user = UserDAO::chercher($userID);
     echo $user->toString();   ?>
 </p>
@@ -34,7 +34,8 @@
 <h3>Méthode inserer() [addedUser-none-none]</h3>
 <p>
     <?php
-    $user = new User("addedUser", "none", "none");
+    $tabPlaylist=[];
+    $user = new User("addedUser", "none", "none", "none",$tabPlaylist);
     echo UserDAO::inserer($user)?$user->toString()." à été ajouté" : "User déjà existant";
     echo "<br>";
     echo "<br><em>Voici la nouvelle liste de tous les Users</em><br>";
