@@ -1,12 +1,13 @@
 <?php 
 
 include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
+include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\DAO\AlbumDAO.php");
 include_once("\UwAmp\www\STREAMIFY\streamify_emile-girard_emile-larochelle\MODEL\CLASS\Artist.class.php");
 
-class ArtisteDAO implements DAO {
+class ArtistDAO implements DAO {
 
     // Méthodes DAO
-    public static function chercher(string $artisteID): ?object {
+    public static function chercher(int $artistID): ?object {
         // Connexion à la base de données & Initialisation
         try {
             $connexion = ConnexionDB::getInstance();
@@ -15,16 +16,20 @@ class ArtisteDAO implements DAO {
         }
         $artiste = null;
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artist WHERE artistID LIKE ?");
-        $query->execute(array($artisteID));
+        $query = $connexion->prepare("SELECT * FROM artists WHERE artistID = ?");
+        $query->execute(array($artistID));
         $e = $query->fetch();
         // Validation du résultat & création de l'objet Artiste
         if ($query->rowCount() == 0) {
             throw new Exception("L'artiste n'existe pas");
         } else {
+            $tabAlbums = [];
+            $tabAlbums = AlbumDAO::collectAlbums($artistID);
             $artiste = new Artiste(
                 $e['artistID'],
-                $e['imageFileName']
+                $e['artistName'],
+                $e['imageFileName'],
+                $tabAlbums
             );
         }
         // Fermeture de la connexion à la DB
@@ -33,7 +38,6 @@ class ArtisteDAO implements DAO {
         // Renvoie de l'Artiste trouvé
         return $artiste;
     }
-
     public static function chercherAvecFiltre(string $filtre): array {
         // Connexion à la base de données & Initialisation
         try {
@@ -43,13 +47,17 @@ class ArtisteDAO implements DAO {
         }
         $tabArtistes = [];
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artist WHERE artistID LIKE '%" . $filtre . "%'");
+        $query = $connexion->prepare("SELECT * FROM artists WHERE artistName LIKE ?");
         // Exécution de la requête et assemblage du tableau d'artistes
-        $query->execute();
+        $query->execute(array("%".$filtre ."%"));
         foreach ($query as $e) {
+            $tabAlbums =[];
+            $tabAlbums = AlbumDAO::collectAlbums($e['artistID']);
             $artiste = new Artiste(
                 $e['artistID'],
-                $e['imageFileName']
+                $e['artistName'],
+                $e['imageFileName'],
+                $tabAlbums
             );
             $tabArtistes[] = $artiste;
         }
@@ -60,7 +68,6 @@ class ArtisteDAO implements DAO {
         // Renvoie du tableau des Artistes trouvés
         return $tabArtistes;
     }
-
     public static function chercherTous(): array {
         // Connexion à la base de données & Initialisation
         try {
@@ -70,13 +77,17 @@ class ArtisteDAO implements DAO {
         }
         $tabArtistes = [];
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM artist");
+        $query = $connexion->prepare("SELECT * FROM artists");
         // Exécution de la requête et assemblage du tableau d'artistes
         $query->execute();
         foreach ($query as $e) {
+            $tabAlbums =[];
+            $tabAlbums = AlbumDAO::collectAlbums($e['artistID']);
             $artiste = new Artiste(
                 $e['artistID'],
-                $e['imageFileName']
+                $e['artistName'],
+                $e['imageFileName'],
+                $tabAlbums
             );
             $tabArtistes[] = $artiste;
         }
@@ -87,7 +98,6 @@ class ArtisteDAO implements DAO {
         // Renvoie du tableau des Artistes trouvés
         return $tabArtistes;
     }
-
     public static function inserer($artiste): bool {
         // Connexion à la base de données
         try {
@@ -96,14 +106,19 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO artist(artistID, imageFileName) VALUES (?, ?)");
-        // Exécution de la requête et retour du résultat true|false
-        return $query->execute(array(
+        $query = $connexion->prepare("INSERT INTO artists(artistID, artistName, imageFileName) VALUES (?,?,?)");
+        // Exécution de la requête 
+        $retour = $query->execute(array(
             $artiste->getArtisteID(),
+            $artiste->getArtisteName(),
             $artiste->getImageFileName()
         ));
+        // Fermeture de la connexion à la DB
+        $query->closeCursor();
+        ConnexionDB::close();
+        // Retour du résultat true|false
+        return $retour;
     }
-
     public static function modifier($artiste): bool {
         // Connexion à la base de données
         try {
@@ -112,14 +127,19 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("UPDATE artist SET imageFileName = ? WHERE artistID = ?");
-        // Exécution de la requête et retour du résultat true|false
-        return $query->execute(array(
+        $query = $connexion->prepare("UPDATE artists SET artistName=?, imageFileName = ? WHERE artistID = ?");
+        // Exécution de la requête 
+        $retour = $query->execute(array(
+            $artiste->getArtisteName(),
             $artiste->getImageFileName(),
             $artiste->getArtisteID()
         ));
+        // Fermeture de la connexion à la DB
+        $query->closeCursor();
+        ConnexionDB::close();
+        // Retour du résultat true|false
+        return $retour;
     }
-
     public static function supprimer($artiste): bool {
         // Connexion à la base de données
         try {
@@ -128,9 +148,29 @@ class ArtisteDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("DELETE FROM artist WHERE artistID LIKE ?");
-        // Exécution de la requête et retour du résultat true|false
-        return $query->execute(array($artiste->getArtisteID()));
+        $query = $connexion->prepare("DELETE FROM artists WHERE artistID = ?");
+        // Exécution de la requête 
+        $retour = $query->execute(array(
+            $artiste->getArtisteID()
+        ));
+        // Reset ID index
+        ArtistDAO::resetID();
+        
+        // Retour du résultat true|false
+        return $retour;
+    }
+
+    private static function resetID(){
+        try {
+            $connexion=ConnexionDB::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+        }
+        $query = $connexion->prepare("ALTER TABLE artists AUTO_INCREMENT = 1");                  
+        $query->execute();
+        // Fermeture de la connexion à la DB
+        $query->closeCursor();
+        ConnexionDB::close();
     }
 }
 ?>

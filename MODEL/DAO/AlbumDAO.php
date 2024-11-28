@@ -6,7 +6,7 @@
     
     class AlbumDAO implements DAO{
         // Méthodes DAO
-        public static function chercher(string $playlistID):?object{
+        public static function chercher(int $albumID):?object{
 
             // Connexion à la base de données & Initialisation
             try {
@@ -14,11 +14,11 @@
             } catch (Exception $e) {
                 throw new Exception("Impossible d’obtenir la connexion à la BD."); 
             }
-            $playlist=null;
+            $album=null;
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist WHERE playlistID LIKE ?");
-            $query->execute(array($playlistID));
+            $query = $connexion->prepare("SELECT * FROM albums WHERE albumID = ?");
+            $query->execute(array($albumID));
             $e = $query->fetch();
 
             // Validation du résultat & création de l'objet Playlist
@@ -26,13 +26,12 @@
                 throw new Exception("La playlist n'existe pas");
             } else {
                 $tabSongs=[];
-                $tabSongs= SongDAO::remplirPlaylist($playlistID);
-                $playlist = new Playlist(
-                    $e['playlistID'],
-                    $e['timesPlayed'],
-                    $e['userID'],
-                    $e['public'],
+                $tabSongs= SongDAO::remplirAlbum($albumID);
+                $album = new Album(
+                    $e['albumID'],
+                    $e['albumName'],
                     $e['imageFileName'],
+                    $e['artistID'],
                     $tabSongs
                 );
             }
@@ -42,7 +41,7 @@
             ConnexionDB::close();
 
             //Renvoie de la playlist trouvée
-            return $playlist;
+            return $album;
         }
         public static function chercherAvecFiltre(string $filtre):array{
 
@@ -52,25 +51,24 @@
             } catch (Exception $e) {
                 throw new Exception("Impossible d’obtenir la connexion à la BD."); 
             }
-            $tabPlaylist=[];
+            $tabAlbums=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist WHERE playlistID LIKE '%".$filtre."%'");
+            $query = $connexion->prepare("SELECT * FROM albums WHERE albumName LIKE ?");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
-            $query->execute();
+            $query->execute(array("%".$filtre ."%"));
             foreach($query as $e){
                 $tabSongs=[];
-                $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
-                $playlist = new Playlist(
-                    $e['playlistID'],
-                    $e['timesPlayed'],
-                    $e['userID'],
-                    $e['public'],
+                $tabSongs= SongDAO::remplirAlbum($e['albumID']);
+                $album = new Album(
+                    $e['albumID'],
+                    $e['albumName'],
                     $e['imageFileName'],
+                    $e['artistID'],
                     $tabSongs
                 );
-                $tabPlaylist[] = $playlist;
+                $tabAlbums[] = $album;
             }
 
             // Fermeture de la connexion à la DB
@@ -78,7 +76,7 @@
             ConnexionDB::close();
             
             //Renvoie du tableau des User trouvés
-            return $tabPlaylist;
+            return $tabAlbums;
         }
         public static function chercherTous():array{
 
@@ -88,25 +86,24 @@
             } catch (Exception $e) {
                 throw new Exception("Impossible d’obtenir la connexion à la BD."); 
             }
-            $tabUsers=[];
+            $tabAlbums=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist");
+            $query = $connexion->prepare("SELECT * FROM albums");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
             $query->execute();
             foreach($query as $e){
                 $tabSongs=[];
-                $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
-                $playlist = new Playlist(
-                    $e['playlistID'],
-                    $e['timesPlayed'],
-                    $e['userID'],
-                    $e['public'],
+                $tabSongs= SongDAO::remplirAlbum($e['albumID']);
+                $album = new Album(
+                    $e['albumID'],
+                    $e['albumName'],
                     $e['imageFileName'],
+                    $e['artistID'],
                     $tabSongs
                 );
-                $tabPlaylist[] = $playlist;
+                $tabAlbums[] = $album;
             }
 
             // Fermeture de la connexion à la DB
@@ -114,7 +111,7 @@
             ConnexionDB::close();
             
             //Renvoie du tableau des User trouvés
-            return $tabPlaylist;
+            return $tabAlbums;
         }
         public static function inserer($album):bool{
 
@@ -126,12 +123,13 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("INSERT INTO album(albumID, artistID, imageFileName) VALUES (?,?,?)");
+            $query = $connexion->prepare("INSERT INTO albums(albumID, albumName, artistID, imageFileName) VALUES (?,?,?,?)");
 
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
                                             $album->getAlbumID(),
+                                            $album->getAlbumName(),
                                             $album->getArtistID(),
                                             $album->imageFileName()
                                         )
@@ -154,13 +152,15 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("UPDATE album SET imageFileName=? WHERE albumId LIKE ?");
+            $query = $connexion->prepare("UPDATE albums SET albumName=?, imageFileName=? artistID=? WHERE albumId = ?");
             
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
+                                            $album->getAlbumName(),
                                             $album->getImageFileName(),
-                                            $album->getPlaylistID()
+                                            $album->getArtistID(),
+                                            $album->getAlbumID()
                                         )
                                     );
             
@@ -181,23 +181,35 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("DELETE FROM album WHERE albumID LIKE ?");
+            $query = $connexion->prepare("DELETE FROM albums WHERE albumID = ?");
             $retour = $query->execute(array
                                         (
                                             $album->getAlbumID()
                                         )
                                     );
 
-            // Fermeture de la connexion à la DB
-            $query->closeCursor();
-            ConnexionDB::close();
+            // Reset ID index
+            AlbumDAO::resetID();
             
             // Retour du résultat true|false
             return $retour;
         }
 
+        private static function resetID(){
+            try {
+                $connexion=ConnexionDB::getInstance();
+            } catch (Exception $e) {
+                throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+            }
+            $query = $connexion->prepare("ALTER TABLE albums AUTO_INCREMENT = 1");                  
+            $query->execute();
+            // Fermeture de la connexion à la DB
+            $query->closeCursor();
+            ConnexionDB::close();
+        }
+
         // Méthode pour populer un album
-        public static function collectAlbum(string $artistID){
+        public static function collectAlbums(string $artistID){
             // Connexion à la base de données & Initialisation
             try {
                 $connexion=ConnexionDB::getInstance();
@@ -207,7 +219,7 @@
             $tabAlbums=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM album WHERE artistID LIKE '?'");
+            $query = $connexion->prepare("SELECT * FROM albums WHERE artistID = ?");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
             $query->execute(array($artistID));
@@ -216,6 +228,7 @@
                 $tabSongs= SongDAO::remplirAlbum($e['albumID']);
                 $album = new Album(
                     $e['albumID'],
+                    $e['albumName'],
                     $e['artistID'],
                     $e['imageFileName'],
                     $tabSongs

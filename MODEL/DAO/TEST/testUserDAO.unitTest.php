@@ -7,11 +7,11 @@
 <h3>Méthode chercher() [username = Emile]</h3>
 <p>
     <?php  
-    $userID = 'Julie';
+    $userID = 1;
     $user = UserDAO::chercher($userID);
     echo $user->toString();   ?>
 </p>
-<h3>Méthode chercherAvecFiltre() [username contains 'ie']</h3>
+<h3>Méthode chercherAvecFiltre() [username contains 'le']</h3>
 <p>
     <?php  
     $filter = "ie";
@@ -31,11 +31,11 @@
     }
     ?>
 </p>
-<h3>Méthode inserer() [addedUser-none-none]</h3>
+<h3>Méthode inserer()</h3>
 <p>
     <?php
     $tabPlaylist=[];
-    $user = new User("addedUser", "none", "none", "none",$tabPlaylist);
+    $user = new User(0,"addedUser", "noPassword", "email@emali.com", 0, "noImage",$tabPlaylist);
     echo UserDAO::inserer($user)?$user->toString()." à été ajouté" : "User déjà existant";
     echo "<br>";
     echo "<br><em>Voici la nouvelle liste de tous les Users</em><br>";
@@ -43,26 +43,24 @@
     foreach($tabUser as $e){
         echo $e->toString() ."<br>";
     }
+    $user = null;
     ?>
 </p>
-<h3>Méthode modifier() [addedUser-newPassword-new@email.com]</h3>
+<h3>Méthode modifier()</h3>
 <p>
     <?php
+    $user = UserDAO::chercher(3);
+    $user->setUserName("newUserName");
     $user->setPassword("newPassword");
     $user->setEmail("new@email.com");
     echo UserDAO::modifier($user)?$user->toString()." à été modifié" : "User inexistant";
-    ?>
-</p>
-<h3>Méthode modifierUsername() [newUsername-newPassword-new@email.com]</h3>
-<p>
-    <?php
-    $user->setUserID("newUsername");
-    echo UserDAO::modifierUserID($user)?$user->toString()." à été modifié" : "User inexistant";
+    $user = null;
     ?>
 </p>
 <h3>Méthode retirer() [delete moddedUser]</h3>
 <p>
     <?php
+    $user = UserDAO::chercher(3);
     echo UserDAO::supprimer($user)?$user->toString()." à été supprimé" : "User inexistant";
     echo "<br>";
     echo "<br><em>Voici la nouvelle liste de tous les Users</em><br>";
@@ -70,6 +68,7 @@
     foreach($tabUser as $e){
         echo $e->toString() ."<br>";
     }
+    $user = null;
     ?>
 </p>
 

@@ -6,7 +6,7 @@
     
     class PlaylistDAO implements DAO{
         // Méthodes DAO
-        public static function chercher(string $playlistID):?object{
+        public static function chercher(int $playlistID):?object{
 
             // Connexion à la base de données & Initialisation
             try {
@@ -17,7 +17,7 @@
             $playlist=null;
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist WHERE playlistID LIKE ?");
+            $query = $connexion->prepare("SELECT * FROM playlists WHERE playlistID = ?");
             $query->execute(array($playlistID));
             $e = $query->fetch();
 
@@ -29,6 +29,7 @@
                 $tabSongs= SongDAO::remplirPlaylist($playlistID);
                 $playlist = new Playlist(
                     $e['playlistID'],
+                    $e['playlistName'],
                     $e['timesPlayed'],
                     $e['userID'],
                     $e['public'],
@@ -55,15 +56,16 @@
             $tabPlaylist=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist WHERE playlistID LIKE '%".$filtre."%'");
+            $query = $connexion->prepare("SELECT * FROM playlists WHERE playlistName = ?");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
-            $query->execute();
+            $query->execute(array("%".$filtre ."%"));
             foreach($query as $e){
                 $tabSongs=[];
                 $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
                 $playlist = new Playlist(
                     $e['playlistID'],
+                    $e['playlistName'],
                     $e['timesPlayed'],
                     $e['userID'],
                     $e['public'],
@@ -88,10 +90,10 @@
             } catch (Exception $e) {
                 throw new Exception("Impossible d’obtenir la connexion à la BD."); 
             }
-            $tabUsers=[];
+            $tabPlaylist=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist");
+            $query = $connexion->prepare("SELECT * FROM playlists");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
             $query->execute();
@@ -100,6 +102,7 @@
                 $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
                 $playlist = new Playlist(
                     $e['playlistID'],
+                    $e['playlistName'],
                     $e['timesPlayed'],
                     $e['userID'],
                     $e['public'],
@@ -126,16 +129,17 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("INSERT INTO playlist(playlistID, timesPlayed, userID, public, imageFileName) VALUES (?,?,?,?,?)");
+            $query = $connexion->prepare("INSERT INTO playlists(playlistID, timesPlayed, userID, public, imageFileName) VALUES (?,?,?,?,?)");
 
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
                                             $playlist->getPlaylistID(),
+                                            $playlist->getPlaylistName(),
                                             $playlist->getTimesPlayed(),
-                                            $playlist->getUserID(),
                                             $playlist->getVisibility(),
-                                            $playlist->getImageFileName()
+                                            $playlist->getImageFileName(),
+                                            $playlist->getUserID()
                                         )
                                     );
             
@@ -156,13 +160,16 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("UPDATE playlist SET timesPlayed=?, public=? WHERE playlistID LIKE ?");
+            $query = $connexion->prepare("UPDATE playlists SET playlistName=?, timesPlayed=?, public=?, imageFileName=?, userID=? WHERE playlistID LIKE ?");
             
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
+                                            $playlist->getPlaylistName(),
                                             $playlist->getTimesPlayed(),
                                             $playlist->getVisibility(),
+                                            $playlist->getImageFileName(),
+                                            $playlist->getuserID(),
                                             $playlist->getPlaylistID()
                                         )
                                     );
@@ -184,21 +191,29 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("DELETE FROM playlist WHERE playlistID LIKE ?");
-            $retour = $query->execute(array
-                                        (
-                                            $playlist->getPlaylistID()
-                                        )
-                                    );
+            $query = $connexion->prepare("DELETE FROM playlists WHERE playlistID = ?");
+            $retour = $query->execute(array($playlist->getPlaylistID()));
 
-            // Fermeture de la connexion à la DB
-            $query->closeCursor();
-            ConnexionDB::close();
-            
+            // Reset ID index
+            PlaylistDAO::resetID();
+        
             // Retour du résultat true|false
             return $retour;
         }
+        private static function resetID(){
+            try {
+                $connexion=ConnexionDB::getInstance();
+            } catch (Exception $e) {
+                throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+            }
+            $query = $connexion->prepare("ALTER TABLE playlists AUTO_INCREMENT = 1");                  
+            $query->execute();
+            // Fermeture de la connexion à la DB
+            $query->closeCursor();
+            ConnexionDB::close();
+        }
 
+        // Méthode additionnelle
         public static function collectPlaylist(string $userID){
             $tabPlaylist = [];
             // Connexion à la base de données & Initialisation
@@ -210,15 +225,16 @@
             $tabPlaylist=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlist WHERE userID LIKE '" .$userID ."'");
+            $query = $connexion->prepare("SELECT * FROM playlists WHERE userID = ?");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
-            $query->execute();
+            $query->execute(array($userID));
             foreach($query as $e){
                 $tabSongs=[];
                 $tabSongs= SongDAO::remplirPlaylist($e['playlistID']);
                 $playlist = new Playlist(
                     $e['playlistID'],
+                    $e['playlistName'],
                     $e['timesPlayed'],
                     $e['userID'],
                     $e['public'],

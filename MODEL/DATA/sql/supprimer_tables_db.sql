@@ -6,21 +6,5 @@
 # Auteur      : Pierre Coutu
 #
 USE streamify;
-
-DELETE FROM user;
-DROP TABLE user;
-
-DELETE FROM playlist;
-DROP TABLE plsylist;
-
-DELETE FROM song;
-DROP TABLE song;
-
-DELETE FROM artiste;
-DROP TABLE artiste;
-
-DELETE FROM admin;
-DROP TABLE admin;
-
 DROP DATABASE streamify;
 

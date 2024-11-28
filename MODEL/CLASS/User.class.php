@@ -7,7 +7,7 @@
         private string $userName;
         private string $password;
         private string $email;
-        private bool $adminStatus;
+        private int $adminStatus;
         private string $imageFileName;
 
         private array $tabPlaylists;
@@ -39,7 +39,7 @@
         public function getEmail():string{
             return $this->email;
         }
-        public function getAdminStatus():bool{
+        public function getAdminStatus():int{
             return $this->adminStatus;
         }
         public function getImageFileName():string{
@@ -59,7 +59,7 @@
         public function setEmail(string $email){
             $this->email=$email;
         }
-        public function setAdminStatus(bool $adminStatus){
+        public function setAdminStatus(int $adminStatus){
             $this->adminStatus = $adminStatus;
         }
         public function setImageFileName(string $imageFileName){

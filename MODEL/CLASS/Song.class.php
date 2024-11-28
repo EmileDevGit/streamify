@@ -9,10 +9,10 @@
         private int $timesPlayed;
         private string $imageFileName;
         private string $mediaFileName;
-        private int $artistID;
+        private int $albumID;
 
         // Constructor
-        public function __construct(int $songID, string $songName, string $playTime, int $timesPlayed, string $imageFileName, string $mediaFileName, int $artistID){
+        public function __construct(int $songID, string $songName, string $playTime, int $timesPlayed, string $imageFileName, string $mediaFileName, int $albumID){
 
             $this->songID = $songID;
             $this->songName = $songName;
@@ -20,7 +20,7 @@
             $this->timesPlayed = $timesPlayed;
             $this->imageFileName = $imageFileName;
             $this->mediaFileName = $mediaFileName;
-            $this->artistID = $artistID;
+            $this->albumID = $albumID;
 
         }
 
@@ -43,8 +43,8 @@
         public function getMediaFileName():string{
             return $this->mediaFileName;
         }
-        public function getArtistID():int{
-            return $this->artistID;
+        public function getAlbumID():int{
+            return $this->albumID;
         }
 
         // Setters
@@ -63,17 +63,10 @@
         public function setMediaFileName(string $mediaFileName){
             $this->mediaFileName = $mediaFileName;
         }
-        public function setArtistID(int $artistID){
-            $this->artistID = $artistID;
-        }
-
-        
-
 
         // Methods
-
         public function toString():string{
-            return "[ #" .$this->songID ." | Titre: " .$this->songName ." | Artiste: #" .$this->artistID ." ]";
+            return "[ #" .$this->songID ." | Titre: " .$this->songName ." | Album: #" .$this->albumID ." ]";
         }
 
 

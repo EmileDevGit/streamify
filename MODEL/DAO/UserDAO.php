@@ -8,7 +8,7 @@ include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL
 class UserDAO implements DAO{
 
     // Méthodes DAO
-    public static function chercher(string $userID):?object{
+    public static function chercher(int $userID):?object{
 
         // Connexion à la base de données & Initialisation
         try {
@@ -19,7 +19,7 @@ class UserDAO implements DAO{
         $user=null;
 
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM users WHERE userID LIKE ?");
+        $query = $connexion->prepare("SELECT * FROM users WHERE userID = ?");
         $query->execute(array($userID));
         $e = $query->fetch();
 
@@ -31,8 +31,10 @@ class UserDAO implements DAO{
             $tabPlaylist = PlaylistDAO::collectPlaylist($userID);
             $user = new User(
                 $e['userID'],
+                $e['userName'],
                 $e['password'],
                 $e['email'],
+                $e['adminStatus'],
                 $e['imageFileName'],
                 $tabPlaylist
             );
@@ -56,17 +58,19 @@ class UserDAO implements DAO{
         $tabUsers=[];
 
         // Préparation de la requête
-        $query = $connexion->prepare("SELECT * FROM users WHERE userID LIKE '%".$filtre."%'");
+        $query = $connexion->prepare("SELECT * FROM users WHERE userName LIKE ?");
 
         // Exécution de la requête et assemblage du tableau d'utilisateurs
-        $query->execute();
+        $query->execute(array("%".$filtre ."%"));
         foreach($query as $e){
             $tabPlaylist = [];
             $tabPlaylist = PlaylistDAO::collectPlaylist($e['userID']);
             $user = new User(
                 $e['userID'],
+                $e['userName'],
                 $e['password'],
                 $e['email'],
+                $e['adminStatus'],
                 $e['imageFileName'],
                 $tabPlaylist
             );
@@ -100,8 +104,10 @@ class UserDAO implements DAO{
             $tabPlaylist = PlaylistDAO::collectPlaylist($e['userID']);
             $user = new User(
                 $e['userID'],
+                $e['userName'],
                 $e['password'],
                 $e['email'],
+                $e['adminStatus'],
                 $e['imageFileName'],
                 $tabPlaylist
             );
@@ -125,14 +131,15 @@ class UserDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO users(userID, password, email, imageFileName) VALUES (?,?,?,?)");
+        $query = $connexion->prepare("INSERT INTO users(userName, password, email, adminStatus, imageFileName) VALUES (?,?,?,?,?)");
 
         // Exécution de la requête
         $retour = $query->execute(array
                                     (
-                                        $user->getUserID(),
+                                        $user->getUserName(),
                                         $user->getPassword(), 
                                         $user->getEmail(),
+                                        $user->getAdminStatus(),
                                         $user->getImageFileName()
                                     )
                                 );
@@ -144,7 +151,6 @@ class UserDAO implements DAO{
         // Retour du résultat true|false
         return $retour;
     }
-    // Modifier pour email-password-photoProfil
     public static function modifier($user):bool{
 
         // Connexion à la base de données
@@ -155,43 +161,17 @@ class UserDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("UPDATE users SET password=?, email=?, imageFileName=? WHERE userID = ?");
+        $query = $connexion->prepare("UPDATE users SET userName =?, password=?, email=?, adminStatus=?, imageFileName=? WHERE userID = ?");
         
         // Exécution de la requête
         $retour = $query->execute(array
                                     (
+                                        $user->getUserName(), 
                                         $user->getPassword(), 
                                         $user->getEmail(),
+                                        $user->getAdminStatus(), 
                                         $user->getImageFileName(),
                                         $user->getUserID()
-                                    )
-                                );
-        
-        // Fermeture de la connexion à la DB
-        $query->closeCursor();
-        ConnexionDB::close();
-
-        // Retour du résultat true|false
-        return $retour;
-    }
-    // Méthode additionnelle pour username
-    public static function modifierUserID($user):bool{
-
-        // Connexion à la base de données
-        try {
-            $connexion=ConnexionDB::getInstance();
-        } catch (Exception $e) {
-            throw new Exception("Impossible d’obtenir la connexion à la BD."); 
-        }
-
-        // Préparation de la requête
-        $query = $connexion->prepare("UPDATE users SET userID=? WHERE email = ?");
-        
-        // Exécution de la requête
-        $retour = $query->execute(array
-                                    (
-                                        $user->getUserID(),
-                                        $user->getEmail()
                                     )
                                 );
         
@@ -210,21 +190,29 @@ class UserDAO implements DAO{
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD."); 
         }
-
         // Préparation de la requête
-        $query = $connexion->prepare("DELETE FROM users WHERE userID LIKE ?");
-        $retour = $query->execute(array
-                                    (
-                                        $user->getUserID()
-                                    )
-                                );
-
+        $query = $connexion->prepare("DELETE FROM users WHERE userID = ?");                     
+        $retour = $query->execute(array($user->getUserID()));
         // Fermeture de la connexion à la DB
         $query->closeCursor();
         ConnexionDB::close();
+        // Reset ID index
+        UserDAO::resetID();
         
         // Retour du résultat true|false
         return $retour;
+    }
+    private static function resetID(){
+        try {
+            $connexion=ConnexionDB::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+        }
+        $query = $connexion->prepare("ALTER TABLE users AUTO_INCREMENT = 1");                  
+        $query->execute();
+        // Fermeture de la connexion à la DB
+        $query->closeCursor();
+        ConnexionDB::close();
     }
 
 }

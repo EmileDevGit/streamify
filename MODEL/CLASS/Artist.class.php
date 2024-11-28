@@ -6,12 +6,14 @@ class Artiste {
     private $artistID;
     private $artistName;
     private $imageFileName;
+    private array $tabAlbums;
 
     // Constructeur
-    public function __construct($artistID, $artistName, $imageFileName) {
+    public function __construct($artistID, $artistName, $imageFileName, $tabAlbums) {
         $this->artistID = $artistID;
         $this->artistName = $artistName;
         $this->imageFileName = $imageFileName;
+        $this->tabAlbums = $tabAlbums;
     }
 
     // Getters
@@ -23,6 +25,9 @@ class Artiste {
     }
     public function getImageFileName(): string {
         return $this->imageFileName;
+    }
+    public function getTabAlbums(): array {
+        return $this->tabAlbums;
     }
 
     // Setters

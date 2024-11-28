@@ -4,7 +4,7 @@ include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL
 
 interface DAO{
 
-    static public function chercher(string $cles):?object;
+    static public function chercher(int $cles):?object;
 
     static public function chercherTous():array;
 
