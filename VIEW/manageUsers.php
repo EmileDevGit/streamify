@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des utilisateurs</title>
+    <title>Ajouter un utilisateur</title>
     <link rel="stylesheet" href="CSS/manageUserStyle.css">
 </head>
 <body>
     <main>
-        <h1 class="title">Ajouter des utilisateurs</h1>
-        <form action="createUser.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <h1 class="title">Ajouter un utilisateur</h1>
+        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createuser.php" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="username">Nom d'utilisateur :</label>
             <input type="text" id="username" name="username" maxlength="50" required placeholder="Entrez le nom d'utilisateur">
 

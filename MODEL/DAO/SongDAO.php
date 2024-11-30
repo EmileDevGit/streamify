@@ -119,12 +119,11 @@ class SongDAO implements DAO{
         }
 
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO songs(songID, songName, playTime, timesPlayed, imageFileName, mediaFileName, albumID) VALUES (?,?,?,?,?,?,?)");
+        $query = $connexion->prepare("INSERT INTO songs(songName, playTime, timesPlayed, imageFileName, mediaFileName, albumID) VALUES (?,?,?,?,?,?)");
 
         // Exécution de la requête
         $retour = $query->execute(array
                                     (
-                                        $song->getSongID(),
                                         $song->getSongName(),
                                         $song->getPlayTime(),
                                         $song->getTimesPlayed(),

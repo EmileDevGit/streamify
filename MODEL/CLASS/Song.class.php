@@ -3,7 +3,7 @@
     class Song{
         
         // Attributes
-        private int $songID;
+        private ?int $songID;
         private string $songName;
         private string $playTime;
         private int $timesPlayed;
@@ -12,7 +12,7 @@
         private int $albumID;
 
         // Constructor
-        public function __construct(int $songID, string $songName, string $playTime, int $timesPlayed, string $imageFileName, string $mediaFileName, int $albumID){
+        public function __construct(?int $songID, string $songName, string $playTime, int $timesPlayed, string $imageFileName, string $mediaFileName, int $albumID){
 
             $this->songID = $songID;
             $this->songName = $songName;
@@ -25,7 +25,7 @@
         }
 
         // Getters
-        public function getSongID():int{
+        public function getSongID():?int{
             return $this->songID;
         }
         public function getSongName():string{

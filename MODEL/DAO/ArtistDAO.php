@@ -106,10 +106,9 @@ class ArtistDAO implements DAO {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
         // Préparation de la requête
-        $query = $connexion->prepare("INSERT INTO artists(artistID, artistName, imageFileName) VALUES (?,?,?)");
+        $query = $connexion->prepare("INSERT INTO artists(artistName, imageFileName) VALUES (?,?)");
         // Exécution de la requête 
         $retour = $query->execute(array(
-            $artiste->getArtisteID(),
             $artiste->getArtisteName(),
             $artiste->getImageFileName()
         ));
