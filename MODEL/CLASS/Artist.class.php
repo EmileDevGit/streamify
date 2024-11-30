@@ -3,13 +3,13 @@
 class Artiste {
 
     // Attributs
-    private $artistID;
+    private ?int $artistID;
     private $artistName;
     private $imageFileName;
     private array $tabAlbums;
 
     // Constructeur
-    public function __construct($artistID, $artistName, $imageFileName, $tabAlbums) {
+    public function __construct(?int $artistID, $artistName, $imageFileName, $tabAlbums) {
         $this->artistID = $artistID;
         $this->artistName = $artistName;
         $this->imageFileName = $imageFileName;
@@ -17,7 +17,7 @@ class Artiste {
     }
 
     // Getters
-    public function getArtisteID(): int {
+    public function getArtisteID(): ?int {
         return $this->artistID;
     }
     public function getArtisteName(): string {

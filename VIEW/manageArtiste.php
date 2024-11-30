@@ -15,7 +15,7 @@
 
     <main>
         <h1 class="title">Ajouter des artistes</h1>
-        <form action="createArtist.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createArtiste.php" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="artistName">Nom de l'artiste :</label>
             <input type="text" id="artistName" name="artistName" maxlength="50" required placeholder="Entrez le nom de l'artiste">
 

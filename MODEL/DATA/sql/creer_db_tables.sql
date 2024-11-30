@@ -20,7 +20,7 @@ CREATE TABLE users (
   password        VARCHAR(50),
   email	          VARCHAR(50) UNIQUE,
   adminStatus     TINYINT,
-  imageFileName   VARCHAR(50),
+  imageFileName   VARCHAR(255),
   PRIMARY KEY (userID)
 );
 
@@ -32,7 +32,7 @@ INSERT INTO users VALUES(2,"Julie", "password", "julie@email.com", 0, "defaultPr
 CREATE TABLE artists (
   artistID        INT NOT NULL AUTO_INCREMENT,
   artistName      VARCHAR(50),
-  imageFileName   VARCHAR(50),
+  imageFileName   VARCHAR(255),
   PRIMARY KEY (artistID)
 );
 
@@ -61,7 +61,7 @@ INSERT INTO playlists VALUES(2, "Study", 0, 0, "noImage", 2);
 CREATE TABLE albums (
   albumID        INT NOT NULL AUTO_INCREMENT,
   albumName      VARCHAR(50),
-  imageFileName  VARCHAR(50),
+  imageFileName  VARCHAR(255),
   artistID       INT,
   PRIMARY KEY (albumID),
   FOREIGN KEY (artistID) REFERENCES artists(artistID)
@@ -80,8 +80,8 @@ CREATE TABLE songs (
   songName      VARCHAR(50),
   playTime      VARCHAR(50), 
   timesPlayed   INT,
-  imageFileName VARCHAR(50),
-  mediaFileName VARCHAR(50),
+  imageFileName VARCHAR(255),
+  mediaFileName VARCHAR(255),
   albumID       INT,
   PRIMARY KEY (songID),
   FOREIGN KEY (albumID) REFERENCES albums(albumID)

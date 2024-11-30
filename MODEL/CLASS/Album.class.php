@@ -3,7 +3,7 @@
     class Album{
 
         // Attributes
-        private $albumID;
+        private ?int $albumID;
         private $albumName;
         private $imageFileName;
         private $artistID;
@@ -12,7 +12,7 @@
 
 
         // Constructor
-        public function __construct($albumID, $albumName, $imageFileName, $artistID, $tabSongs){
+        public function __construct(?int $albumID, $albumName, $imageFileName, $artistID, $tabSongs){
 
             $this->albumID = $albumID;
             $this->albumName = $albumName;
@@ -23,7 +23,7 @@
         }
   
         // Getters
-        public function getAlbumID():int{
+        public function getAlbumID():?int{
             return $this->albumID;
         }public function getAlbumName():string{
             return $this->albumName;

@@ -123,15 +123,14 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("INSERT INTO albums(albumID, albumName, artistID, imageFileName) VALUES (?,?,?,?)");
+            $query = $connexion->prepare("INSERT INTO albums(albumName, artistID, imageFileName) VALUES (?,?,?)");
 
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
-                                            $album->getAlbumID(),
                                             $album->getAlbumName(),
                                             $album->getArtistID(),
-                                            $album->imageFileName()
+                                            $album->getimageFileName()
                                         )
                                     );
             

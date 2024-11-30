@@ -13,7 +13,7 @@
 <body>
     <main>
         <h1 class="title">Ajouter des musique</h1>
-        <form action="createSong.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createSong.php" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="songName">Nom de la musique :</label>
             <input type="text" id="songName" name="songName" maxlength="50" required placeholder="Entrez le nom de la musique">
 

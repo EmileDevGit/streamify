@@ -11,7 +11,7 @@
 <body>
     <main>
         <h1 class="title">Ajouter des album</h1>
-        <form action="createAlbum.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createAlbum.php" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="albumName">Nom de l'album :</label>
             <input type="text" id="albumName" name="albumName" maxlength="50" required placeholder="Entrez le nom de l'album">
 
