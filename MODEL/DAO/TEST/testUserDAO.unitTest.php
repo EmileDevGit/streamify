@@ -1,7 +1,7 @@
 
 <h1>[TEST] UserDAO</h1>
 <?php
-    include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\UserDAO.php");
+    include_once("MODEL\DAO\UserDAO.php");
 ?>
 <br>
 <h3>Méthode chercher() [username = Emile]</h3>

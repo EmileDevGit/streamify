@@ -1,8 +1,8 @@
 <?php 
 
-include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
-include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\PlaylistDAO.php");
-include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\CLASS\User.class.php");
+include_once("MODEL\DAO\_DAO.interface.php");
+include_once("MODEL\DAO\PlaylistDAO.php");
+include_once("MODEL\CLASS\User.class.php");
 
 
 class UserDAO implements DAO{
@@ -201,6 +201,46 @@ class UserDAO implements DAO{
         
         // Retour du résultat true|false
         return $retour;
+    }
+    // Other Methods
+    public static function chercherUserName(string $userName):?object{
+
+        // Connexion à la base de données & Initialisation
+        try {
+            $connexion=ConnexionDB::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD."); 
+        }
+        $user=null;
+
+        // Préparation de la requête
+        $query = $connexion->prepare("SELECT * FROM users WHERE userName LIKE ?");
+        $query->execute(array($userName));
+        $e = $query->fetch();
+
+        // Validation du résultat & création de l'objet User
+        if($query->rowCount()==0){
+            throw new Exception("L'utilisateur n'existe pas");
+        } else {
+            $tabPlaylist = [];
+            $tabPlaylist = PlaylistDAO::collectPlaylist($e['userID']);
+            $user = new User(
+                $e['userID'],
+                $e['userName'],
+                $e['password'],
+                $e['email'],
+                $e['adminStatus'],
+                $e['imageFileName'],
+                $tabPlaylist
+            );
+        }
+
+        // Fermeture de la connexion à la DB
+        $query->closeCursor();
+        ConnexionDB::close();
+
+        //Renvoie du User trouvé
+        return $user;
     }
     private static function resetID(){
         try {

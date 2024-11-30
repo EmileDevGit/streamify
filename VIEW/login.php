@@ -1,10 +1,13 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/loginStyle.css">
+    
+    <link rel="stylesheet" href="VIEW/CSS/loginStyle.css">
     <title>Streamify - Login</title>
 </head>
 
@@ -14,29 +17,29 @@
 
         </div>
         <div class="rightSide">
-            <form action="discovery.php" method="GET" id="loginForm" name="loginForm">
+            <form  action="?action=login" method="post" id="loginForm" name="loginForm">
                 <div class="loginTitle">
                     <h2><em>Login</em> your account</h2>
                 </div>
                 <div class="formInputs">
                     <div class="usernameField">
                         <div class="label">
-                            <label for="userID">Username</label><br>
+                            <label for="userName">Username</label><br>
                         </div>
-                        <input type="text" name="userID" id="userID" placeholder="" required>
+                        <input type="text" name="userName" id="userName" required placeholder="" >
                     </div>
                     <div class="passwordField">
                         <div class="label">
-                            <label for="userPassword">Password</label><br>
+                            <label for="userPasswd">Password</label><br>
                         </div>
-                        <input type="password" name="userPasswd" id="userPasswd" placeholder="" required>
+                        <input type="password" name="userPasswd" id="userPasswd" required placeholder="" >
                     </div>
 
                     <div class="buttonLogin">
-                        <button>Login</button>
+                        <input type="submit" value="Login" id="login" form="loginForm">
                     </div>
                     <div class="signupLink">
-                        <a href="signup.php" target="_self">Create an account</a>
+                        <a href="?action=gotoSignup">Create an account</a>
                     </div>
                 </div>
             </form>

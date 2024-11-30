@@ -16,16 +16,16 @@ USE streamify;
 -- Table des Users
 CREATE TABLE users (
   userID          INT NOT NULL AUTO_INCREMENT,
-  userName        VARCHAR(50),
+  userName        VARCHAR(50) UNIQUE,
   password        VARCHAR(50),
-  email	          VARCHAR(50),
+  email	          VARCHAR(50) UNIQUE,
   adminStatus     TINYINT,
   imageFileName   VARCHAR(50),
   PRIMARY KEY (userID)
 );
 
-INSERT INTO users VALUES(1,"Emile", "password", "email@email.com", 1, "noImage");
-INSERT INTO users VALUES(2,"Julie", "password", "email@email.com", 0, "noImage");
+INSERT INTO users VALUES(1,"Emile", "password", "emile@email.com", 1, "defaultProfile.png,");
+INSERT INTO users VALUES(2,"Julie", "password", "julie@email.com", 0, "defaultProfile.png");
 
 
 -- Table des Artiste

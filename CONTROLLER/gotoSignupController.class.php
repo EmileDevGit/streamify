@@ -2,7 +2,10 @@
     
 	include_once("CONTROLLER/controller.abstract.class.php");
 
-	class LoginDefault extends Controller  {
+
+
+
+	class gotoSignup extends Controller  {
 
 		public function __construct() {
 
@@ -10,10 +13,8 @@
 
 		}
 		
-
 		public function executerAction():string {
-            $view = "login.php";
-			return $view;
+			return "signup.php";
 		}
 
 		

@@ -1,3 +1,9 @@
+<?php if (!isset($controller)) header("Location: login.php"); ?>
+
+
+
+
+
 <header>
     <div class="logo">Streamify</div>
     <form action="search.html" method="GET" class="search-bar">
@@ -9,8 +15,8 @@
         <a href="library.php">LIBRARY</a>
     </nav>
     <div class="profile-icon">
-        <a href="userProfile.php">
-            <img src="IMAGES/profileIconpng.png" alt="Profil">
+        <a href="?action=gotoProfile">
+            <img src="VIEW/IMAGES/profile/<?php echo $_COOKIE["profilePic"];?>" alt="Profil">
         </a>
     </div>
 </header>

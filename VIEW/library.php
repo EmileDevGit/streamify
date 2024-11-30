@@ -1,10 +1,15 @@
+<?php if (!isset($controller)) header("Location: login.php"); ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/libraryStyle.css">
+    <link rel="stylesheet" href="VIEW/CSS/libraryStyle.css">
     <title>Streamify - Library</title>
 </head>
 

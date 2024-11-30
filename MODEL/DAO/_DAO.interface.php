@@ -1,6 +1,6 @@
 <?php 
 
-include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DATA\ConnexionDB.class.php");
+include_once("MODEL\DATA\ConnexionDB.class.php");
 
 interface DAO{
 

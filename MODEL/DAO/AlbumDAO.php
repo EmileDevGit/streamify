@@ -1,7 +1,7 @@
 <?php 
-    include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\_DAO.interface.php");
-    include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\DAO\SongDAO.php");
-    include_once("\UwAmp\www\Streamify\streamify_emile-girard_emile-larochelle\MODEL\CLASS\Album.class.php");
+    include_once("MODEL\DAO\_DAO.interface.php");
+    include_once("MODEL\DAO\SongDAO.php");
+    include_once("MODEL\CLASS\Album.class.php");
     
     
     class AlbumDAO implements DAO{

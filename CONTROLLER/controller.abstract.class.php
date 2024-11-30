@@ -3,26 +3,28 @@
 	abstract class Controller {
 
 		protected $messagesErreur = array();
-		protected $actor = "guest";
+		protected $user = "";
 
 		public function __construct() {
 			$this->determinerActor();
 		}
 		
-		public function getMessagesErreur():array { return $this->messagesErreur; }
-		public function getActor():string
-		{
-			return $this->actor;
+		public function getMessagesErreur():array {
+			 return $this->messagesErreur; 
+		}
+
+		public function getUser():string{
+			return $this->user;
 		}
 		
 		abstract public function executerAction();
 
-	private function determinerActor():void {
+		private function determinerActor():void {
 		
-        session_start();
-		if (isset($_SESSION['connectedUser'])) {
-			$this->actor = "user";
+			session_start();
+			if (isset($_SESSION['connectedUser'])) {
+				$this->user = $_SESSION['connectedUser'];
+			}
 		}
-	}
 		
 	}
