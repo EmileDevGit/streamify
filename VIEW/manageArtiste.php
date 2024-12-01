@@ -15,12 +15,12 @@
 
     <main>
         <h1 class="title">Ajouter des artistes</h1>
-        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createArtiste.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="?action=createArtist" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="artistName">Nom de l'artiste :</label>
             <input type="text" id="artistName" name="artistName" maxlength="50" required placeholder="Entrez le nom de l'artiste">
 
             <label for="imageFileName">Photo de l'artiste :</label>
-            <input type="file" id="imageFileName" name="imageFileName" accept="image/*" required>
+            <input type="file" id="imageFileName" name="imageFileName" accept="image/*" >
 
             <button type="submit" class="button button-add">Ajouter l'artiste</button>
         </form>

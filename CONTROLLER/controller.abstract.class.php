@@ -4,6 +4,7 @@
 
 		protected $messagesErreur = array();
 		protected $user = "";
+		protected $action = "";
 
 		public function __construct() {
 			$this->determinerActor();

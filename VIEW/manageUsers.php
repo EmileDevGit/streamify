@@ -14,7 +14,7 @@
 <body>
     <main>
         <h1 class="title">Ajouter un utilisateur</h1>
-        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createuser.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="?action=createUser" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="username">Nom d'utilisateur :</label>
             <input type="text" id="username" name="username" maxlength="50" required placeholder="Entrez le nom d'utilisateur">
 
@@ -26,12 +26,12 @@
 
             <label for="adminStatus">Statut administrateur :</label>
             <select id="adminStatus" name="adminStatus" required>
-                <option value="1">Admin</option>
                 <option value="0">Utilisateur</option>
+                <option value="1">Admin</option>
             </select>
 
             <label for="image">Photo de profil :</label>
-            <input type="file" id="image" name="imageFileName" accept="image/*" required>
+            <input type="file" id="image" name="imageFileName" accept="image/*" >
 
             <button type="submit" class="button button-add">Ajouter l'utilisateur</button>
         </form>

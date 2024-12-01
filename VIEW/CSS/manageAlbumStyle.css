@@ -40,7 +40,7 @@ main {
 }
 
 .form-container input[type="text"],
-.form-container input[type="file"] {
+.form-container input[type="file"]{
     background-color: var(--surface1);
     color: var(--text);
     border: 1px solid var(--overlay0);
@@ -52,7 +52,7 @@ main {
 }
 
 .form-container input[type="text"]:focus,
-.form-container input[type="file"]:focus {
+.form-container input[type="file"]:focus{
     border-color: var(--blue);
 }
 
