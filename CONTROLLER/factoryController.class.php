@@ -14,6 +14,7 @@
 	include_once("CONTROLLER/createArtistController.class.php");
 	include_once("CONTROLLER/createAlbumController.class.php");
 	include_once("CONTROLLER/createSongController.class.php");
+    include_once("CONTROLLER/factoryController.class.php");
 
 
 
@@ -48,6 +49,9 @@ class Factory{
                 break;
             case $action == "createSong":
                 $controller =  new CreateSong();
+                break;
+            case $action == "search":
+                $controller = new SearchController();
                 break;
             default:
                 $controller = new DefaultController();
