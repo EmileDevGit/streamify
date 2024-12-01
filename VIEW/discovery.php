@@ -20,46 +20,26 @@
         <section class="section">
             <h2 class="sectionTitle">Musiques du jour</h2>
             <div class="content-musique">
-                <div class="musique">
-                    <div class="musique-content">
-                        <div class="musique-info">
-                            <p>Song name</p>
-                            <p>album</p>
-                        </div>
-                    </div>
-                    <button class="play-button">PLAY</button>
-                    <button class="add-button">ADD</button>
-                </div>
-                <div class="musique">
-                    <div class="musique-content">
-                        <div class="musique-info">
-                            <p>Song name</p>
-                            <p>album</p>
-                        </div>
-                    </div>
-                    <button class="play-button">PLAY</button>
-                    <button class="add-button">ADD</button>
-                </div>
-                <div class="musique">
-                    <div class="musique-content">
-                        <div class="musique-info">
-                            <p>Song name</p>
-                            <p>album</p>
-                        </div>
-                    </div>
-                    <button class="play-button">PLAY</button>
-                    <button class="add-button">ADD</button>
-                </div>
-                <div class="musique">
-                    <div class="musique-content">
-                        <div class="musique-info">
-                            <p>Song name</p>
-                            <p>album</p>
-                        </div>
-                    </div>
-                    <button class="play-button">PLAY</button>
-                    <button class="add-button">ADD</button>
-                </div>
+
+                <?php 
+                    $tabsongs = SongDAO::chercherTous();
+                    for ($i=0;$i<4;$i++){
+                        $song = $tabsongs[$i];
+                        $album = AlbumDAO::chercher($song->getSongID());
+                        ?>
+                            <div class="musique">
+                                <div class="musique-content">
+                                    <div class="musique-info">
+                                        <p><?php echo $song->getSongName();?></p>
+                                        <p><?php echo $album->getAlbumName();?></p>
+                                    </div>
+                                </div>
+                                <button class="play-button">PLAY</button>
+                                <button class="add-button">ADD</button>
+                            </div>
+                        <?php
+                    }
+                ?>
             </div>
         </section>
     

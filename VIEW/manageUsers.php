@@ -1,4 +1,4 @@
-<?php if (!isset($controller)) header("Location: login.php"); ?>
+<?php if (!isset($controller)) header("Location: ../?action="); ?>
 
 
 
@@ -32,9 +32,12 @@
 
             <label for="image">Photo de profil :</label>
             <input type="file" id="image" name="imageFileName" accept="image/*" >
-
+        <div>
             <button type="submit" class="button button-add">Ajouter l'utilisateur</button>
         </form>
+        
+            <a href="?action=gotoProfile" class="button" id="btnRetour">Retour</a>
+        </div>
     </main>
 </body>
 </html>

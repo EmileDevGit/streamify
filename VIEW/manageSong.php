@@ -1,8 +1,5 @@
 <?php 
-
-    if (!isset($controller)) header("Location: login.php");
-    include_once ("MODEL/CLASS/Album.class.php");
-
+    if (!isset($controller)) header("Location: ../?action=");
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +13,7 @@
 <body>
     <main>
         <h1 class="title">Ajouter des musique</h1>
-        <form action="/STREAMIFY/streamify_emile-girard_emile-larochelle/CONTROLLER/controller.createSong.php" method="POST" class="form-container" enctype="multipart/form-data">
+        <form action="?action=createSong" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="songName">Nom de la musique :</label>
             <input type="text" id="songName" name="songName" maxlength="50" required placeholder="Entrez le nom de la musique">
 
@@ -38,11 +35,12 @@
 
             <label for="mediaFileName">Fichier audio :</label>
             <input type="file" id="mediaFileName" name="mediaFileName" accept="audio/*" required>
-            <button type="submit" class="button button-add">Ajouter la musique</button>
+            <div>
+                <button type="submit" class="button button-add">Ajouter la musique</button>
             
         </form>
-        <a href="?action=gotoProfile"></a>
-        <button class="button button-return">Retour</button>
+            <a href="?action=gotoProfile" class="button" id="btnRetour">Retour</a>
+        </div>
     </main>
 </body>
 </html>

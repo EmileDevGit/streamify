@@ -14,8 +14,8 @@
 		}
 		
 		public function executerAction():string {
-
             $action = $_GET['action'];
+            
 			
             switch (true){
                 case $action == "gotoManageSong":
@@ -63,9 +63,12 @@
                 case $action == "gotoSignup":
                     return "signup.php";
                     break;
-                //case $action == "gotoDiscovery":
-                //    return "discovery.php";
-                //    break;
+                case $action == "gotoDiscovery":
+                    return "discovery.php";
+                    break;
+                case $action == "gotoLibrary":
+                    return "library.php";
+                    break;
                 default : 
                     ?> <script>alert("Une erreur est survenue, veuillez vous reconnecter.")</script> <?php
                     return "login.php";

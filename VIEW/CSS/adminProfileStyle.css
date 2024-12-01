@@ -3,21 +3,21 @@
 
 
 body {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     font-family: system-ui;
     background-color: var(--base);
     color: var(--text);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: auto;
     align-items: center;
     justify-content: center;
 }
 
 header {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0px;
     text-align: center;
     background-color: var(--mantle);
     color: var(--rosewater);
@@ -38,6 +38,7 @@ header {
     gap: 20px;
     width: 90%;
     max-width: 400px;
+    margin-top: 30px;
 }
 .button {
     display: inline-block;
@@ -62,6 +63,11 @@ header {
 
 .button:active {
     background-color: var(--lavander);
+}
+
+#btnRetour {
+    margin-top: 20px;
+    width : 80%;
 }
 
 @media (max-width: 600px) {

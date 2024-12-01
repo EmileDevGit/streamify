@@ -40,6 +40,7 @@
 				$_SESSION["userID"] = $user->getUserID();
 				$_SESSION["password"] = $user->getPassword();
 				$_SESSION["adminStatus"] = $user->getAdminStatus();
+				$_SESSION["profilePic"] = $user->getImageFileName();
 				
 				// initialisation des cookies
 				$_COOKIE["username"] = $user->getUserName();

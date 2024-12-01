@@ -1,4 +1,4 @@
-<?php if (!isset($controller)) {header("Location: login.php");} ?>
+<?php if (!isset($controller)) {header("Location: ../?action=");} ?>
 
 
 
@@ -13,7 +13,7 @@
 <body>
     <main>
         <h1 class=title>Recherche</h1>
-        <form action="search.php" method="GET" class="form-container">
+        <form action="" method="GET" class="form-container">
             <label for="searchCategory">Catégorie de recherche :</label>
             <select id="searchCategory" name="category" required>
                 <option value="songs">Musique</option>
@@ -24,9 +24,12 @@
 
             <label for="searchQuery">Rechercher :</label>
             <input type="text" id="searchQuery" name="query">
-
+        <div>
             <button type="submit" class="button button-search">Rechercher</button>
         </form>
+        
+            <a href="?action=gotoProfile" class="button" id="btnRetour">Retour</a>
+        </div>
 
 
     <div class="result">
