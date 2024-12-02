@@ -129,14 +129,12 @@
             }
 
             // Préparation de la requête
-            $query = $connexion->prepare("INSERT INTO playlists(playlistID, timesPlayed, userID, public, imageFileName) VALUES (?,?,?,?,?)");
+            $query = $connexion->prepare("INSERT INTO playlists (playlistName, public, imageFileName, userID) VALUES (?, ?, ?, ?)");
 
             // Exécution de la requête
             $retour = $query->execute(array
                                         (
-                                            $playlist->getPlaylistID(),
                                             $playlist->getPlaylistName(),
-                                            $playlist->getTimesPlayed(),
                                             $playlist->getVisibility(),
                                             $playlist->getImageFileName(),
                                             $playlist->getUserID()

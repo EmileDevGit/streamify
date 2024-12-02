@@ -18,6 +18,13 @@
             
 			
             switch (true){
+                case $action == "gotoManagePlaylist": 
+                    if($_SESSION["adminStatus"] == 1){
+                        return "managePlaylist.php";
+                    } else {
+                        return "userProfile.php";        
+                    }
+                    break;
                 case $action == "gotoManageSong":
                     if($_SESSION["adminStatus"] == 1){
                         return "manageSong.php";

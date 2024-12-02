@@ -22,6 +22,7 @@
             <a href="?action=gotoManageArtiste" class="button" id="btnArtiste">Ajoue artiste</a>
             <a href="?action=gotoManageAlbum" class="button" id="btnAlbum">Ajoue album</a>
             <a href="?action=gotoManageSong" class="button" id="btnMusique">Ajoue musique</a>
+            <a href="?action=gotoManagePlaylist" class="button" id="btnPlaylist">Ajoute playlist</a>
             <br>
             <a href="?action=gotoDiscovery" class="button" id="btnRetour">Retour</a>
         </div>
