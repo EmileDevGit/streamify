@@ -16,7 +16,7 @@ class CreatePlaylist extends Controller {
                 throw new Exception("Tous les champs obligatoires doivent être remplis.");
             }
 
-            $imageFileName = "defaultPlaylist.png";
+            $imageFileName = null; 
             if (!empty($_FILES['imageFileName']['name'])) {
                 $uploadDir = 'VIEW/IMAGES/playlist/';
                 if (!is_dir($uploadDir)) {
@@ -26,8 +26,12 @@ class CreatePlaylist extends Controller {
                 if (!move_uploaded_file($_FILES['imageFileName']['tmp_name'], $uploadFile)) {
                     throw new Exception("Erreur lors du téléchargement de l'image.");
                 }
+            
                 $imageFileName = basename($_FILES['imageFileName']['name']);
+            } else {
+                $imageFileName = "defaultPlaylist.png";
             }
+            
 
             $playlist = new Playlist(
                 null,
