@@ -13,24 +13,24 @@ class SearchController extends Controller {
     }
 
     public function executerAction(): string {
-        $category = $_GET['category'] ?? ''; 
-        $query = $_GET['query'] ?? '';      
+        $query = $_POST["query"];
+        $category = $_POST["category"];
         $results = [];
 
         try {
             // Gestion catégories
             switch ($category) {
                 case "songs":
-                    $results = empty($query) ? SongDAO::chercherTous() : SongDAO::chercherAvecFiltre($query);
+                    $results = !isset($query) ? SongDAO::chercherTous() : SongDAO::chercherAvecFiltre($query);
                     break;
                 case "artists":
-                    $results = empty($query) ? ArtistDAO::chercherTous() : ArtistDAO::chercherAvecFiltre($query);
+                    $results = !isset($query) ? ArtistDAO::chercherTous() : ArtistDAO::chercherAvecFiltre($query);
                     break;
                 case "albums":
-                    $results = empty($query) ? AlbumDAO::chercherTous() : AlbumDAO::chercherAvecFiltre($query);
+                    $results = !isset($query) ? AlbumDAO::chercherTous() : AlbumDAO::chercherAvecFiltre($query);
                     break;
                 case "users":
-                    $results = empty($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
+                    $results = !isset($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
                     break;
                 default:
                     throw new Exception("Catégorie invalide.");
@@ -40,8 +40,8 @@ class SearchController extends Controller {
         }
 
         // Stock les résultat
-        $_SESSION['searchResults'] = $results;
-        $_SESSION['searchCategory'] = $category;
+        $_COOKIE["searchResults"] = $results;
+        $_COOKIE["category"] = $category;
 
         return "manageSearch.php"; // Retourner vue
     }

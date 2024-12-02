@@ -8,6 +8,7 @@
     // Action
 	include_once("CONTROLLER/loginController.class.php");
 	include_once("CONTROLLER/signupController.class.php");
+	include_once("CONTROLLER/searchController.class.php");
 
     // AdminAction
 	include_once("CONTROLLER/createUserController.class.php");
