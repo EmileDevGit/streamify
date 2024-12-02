@@ -4,7 +4,7 @@
     class Playlist{
 
          // Attributes
-        private $playlistID;
+        private ?int $playlistID;
         private $playlistName;
         private $timesPlayed;
         private $public;
@@ -15,7 +15,7 @@
 
 
         // Constructor
-        public function __construct($playlistID, $playlistName, $timesPlayed, $public, $imageFileName, $tabSongs, $userID){
+        public function __construct(?int $playlistID, $playlistName, $timesPlayed, $public, $imageFileName, $tabSongs, $userID){
 
             $this->playlistID = $playlistID;
             $this->playlistName = $playlistName;
@@ -28,7 +28,7 @@
         }
  
          // Getters
-        public function getPlaylistID():int{
+        public function getPlaylistID():?int{
             return $this->playlistID;
         }
         public function getPlaylistName():string{
