@@ -23,8 +23,7 @@
                 <h1>Bibliothèque</h1>
             </div>
             <div class="buttons">
-                <button>+ Playlist</button>
-                <button>+ Artist</button>
+                <a href="?action=gotoManagePlaylist" ><button>+ Playlist</button></a>
             </div>
         </div>
         <div class="h3">
@@ -48,30 +47,6 @@
                     </div>
                     <h4 class="playlist-title">Titre de Playlist</h4>
                     <p class="playlist-description">Description de la playlist ici</p>
-                </div>
-
-            </div>
-        </div>
-        <div class="h3">
-            <h3>My Artists</h3>
-        </div>
-        <div class="list">
-            <div class="artists">
-
-                <div class="artistElement">
-                    <div class="artist-picture">
-                        <img src="../IMAGES/loginBackground.jpg" alt="Artiste">
-                    </div>
-                    <h4 class="artist-name">Nom de l'artiste</h4>
-                    <a href="artistePage.php"><button class="profile-button">PROFILE</button></a>
-                </div>
-
-                <div class="artistElement">
-                    <div class="artist-picture">
-                        <img src="../IMAGES/loginBackground.jpg" alt="Artiste">
-                    </div> 
-                    <h4 class="artist-name">Nom de l'artiste</h4>
-                    <a href="artistePage.php"><button class="profile-button">PROFILE</button></a>
                 </div>
 
             </div>

@@ -87,7 +87,7 @@ main {
     padding: 15px 20px;
     font-size: 0.5em;
     font-weight: bold;
-    color: var(--text);
+    color: var(--surface0);
     background-color: var(--blue);
     text-decoration: none;
     border-radius: 10px;

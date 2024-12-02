@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 100%;
+    min-height: 1000px;
 }
 
 main {
@@ -85,7 +85,7 @@ main {
     padding: 15px 20px;
     font-size: 1em;
     font-weight: bold;
-    color: var(--text);
+    color: var(--surface0);
     background-color: var(--blue);
     text-decoration: none;
     border-radius: 10px;
@@ -129,14 +129,66 @@ main {
     text-align: center;
     margin-bottom: 25px;
 }
+.result p{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+table tr th {
+    padding: 5px;
+    border-bottom: solid 2px var(--surface1);
+    background-color: var(--surface1);
+}
+
+table tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+}
+
+table tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+
+}
+
+table tr td {
+    padding: 10px;
+}
+
+table tr:hover td{
+    background-color: var(--surface1);
+}
+table tr:last-child td:first-child{
+    border-bottom-left-radius:5px ;
+}
+table tr:last-child td:last-child{
+    border-bottom-right-radius:5px ;
+}
 
 
-table{
+
+table {
+    border-radius: 10px;
+    border: solid 2px var(--lavander);
+    background-color: var(--surface0);
+    border-spacing: 0;
+    padding: 10px;
+    border-style: solid;
     margin: auto;
     width: 70%;
-    border-collapse: separate;
-    border-style: groove;
+    text-align: justify;
 }
+
+
+
+caption {
+    font-size: x-large;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+
+
 
 @media (max-width: 600px) {
     .title {

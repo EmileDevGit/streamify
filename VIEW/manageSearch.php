@@ -1,6 +1,7 @@
 <?php if (!isset($controller)) { echo "Erreur : contrôleur introuvable."; exit; } 
     
 function afficherSongs($searchResults){
+    if($searchResults!=null){
     ?><table>
         <caption>Musique</caption>
         <tr>
@@ -25,9 +26,10 @@ function afficherSongs($searchResults){
         
     <?php }
     ?> </table> <?php
+        }
 }
 function afficherArtists($searchResults){
-    ?> <table>
+    if($searchResults!=null){?> <table>
     <caption>Artistes</caption>
         <tr>
             <th>Nom</th>
@@ -42,9 +44,10 @@ function afficherArtists($searchResults){
             </tr>
     <?php } ?> 
     </table> <?php
+    }
 }
 function afficherAlbums($searchResults){
-    ?>
+    if($searchResults!=null){?>
     <table>
     <caption>Albums</caption>
         <tr>
@@ -64,9 +67,10 @@ function afficherAlbums($searchResults){
             </tr>
     <?php }?> 
     </table> <?php
+    }
 }
 function afficherUsers($searchResults){
-    ?>
+    if($searchResults!=null){?>
     <table>
     <caption>Utilisateur</caption>
         <tr>
@@ -88,6 +92,7 @@ function afficherUsers($searchResults){
             </tr>
     <?php }?> 
     </table> <?php
+    }
 }
 
 
@@ -182,7 +187,7 @@ function afficherUsers($searchResults){
                     }
 
             ?>
-                <?php }else{ echo "Aucun Résultats";}?>
+                <?php }else{ echo "<p>Aucun Résultats</p>";}?>
     </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <body>
 
     <main>
-        <h1 class="title">Ajouter une playlist</h1>
+        <h1 class="title">Créer une playlist</h1>
         <form action="?action=createPlaylist" method="POST" class="form-container" enctype="multipart/form-data">
             <label for="playlistName">Nom de la playlist :</label>
             <input type="text" id="playlistName" name="playlistName" maxlength="50" required placeholder="Entrez le nom de la playlist">
