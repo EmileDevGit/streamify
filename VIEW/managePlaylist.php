@@ -38,11 +38,10 @@
 
             <div>
                 <button type="submit" class="button button-add">Ajouter la playlist</button>
-            </div>
         </form>
         <a href="?action=gotoProfile" class="button" id="btnRetour">Retour</a>
+            </div>
     </main>
 
 </body>
 </html>
-
