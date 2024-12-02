@@ -32,6 +32,19 @@ class SearchController extends Controller {
                 case "users":
                     $results = !isset($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
                     break;
+                case "generalSearch":
+                    $generalSongs = !isset($query) ? SongDAO::chercherTous() : SongDAO::chercherAvecFiltre($query);
+                    $generalArtists = !isset($query) ? ArtistDAO::chercherTous() : ArtistDAO::chercherAvecFiltre($query);
+                    $generalAlbums = !isset($query) ? AlbumDAO::chercherTous() : AlbumDAO::chercherAvecFiltre($query);
+                    $generalUsers = !isset($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
+                    
+                    $_COOKIE["generalSearch"] = true;
+                    $_COOKIE["generalSongs"] = $generalSongs;
+                    $_COOKIE["generalArtists"] = $generalArtists;
+                    $_COOKIE["generalAlbums"] = $generalAlbums;
+                    $_COOKIE["generalUsers"] = $generalUsers;
+
+                    break;
                 default:
                     throw new Exception("Catégorie invalide.");
             }
