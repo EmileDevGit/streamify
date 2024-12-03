@@ -1,7 +1,5 @@
 ﻿# 
-# Description : Script SQL pour créer et initialiser les tables de test
-#               pour la base de données "streamify"
-#               utilisée dans les  démos du cours 420-G16-R0
+# Description : Script SQL pour re-initialiser la database de développement
 # Date        : 2024/03/11
 # Auteur      : Émile Girard et Émile Larochelle-Langevin
 #
