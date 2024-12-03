@@ -1,6 +1,7 @@
-<?php if (!isset($controller)) header("Location: ../?action="); ?>
-
-
+<?php 
+    if(!isset($controller)){header("Location: ?action=");}
+    if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+?>
 
 
 

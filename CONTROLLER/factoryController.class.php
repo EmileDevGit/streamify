@@ -8,6 +8,7 @@
     // Action
 	include_once("CONTROLLER/loginController.class.php");
 	include_once("CONTROLLER/signupController.class.php");
+	include_once("CONTROLLER/logoutController.class.php");
 	include_once("CONTROLLER/searchController.class.php");
 
     // AdminAction
@@ -17,6 +18,8 @@
 	include_once("CONTROLLER/createSongController.class.php");
     include_once("CONTROLLER/factoryController.class.php");
     include_once("CONTROLLER/createPlaylistController.class.php");
+    include_once("CONTROLLER/deleteController.class.php");
+
 
 
 
@@ -37,6 +40,12 @@ class Factory{
                 break;
             case $action == "signup":
                 $controller =  new Signup();
+                break;
+            case $action == "logout":
+                $controller =  new Logout();
+                break;
+            case $action == "delete":
+                $controller = new Delete();
                 break;
 
             // controller administratifs

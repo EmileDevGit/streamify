@@ -24,26 +24,31 @@ CREATE TABLE users (
   PRIMARY KEY (userID)
 );
 
-INSERT INTO users VALUES(1,"Emile", "password", "emile@email.com", 1, "defaultProfile.png,");
-INSERT INTO users VALUES(2,"Julie", "password", "julie@email.com", 0, "defaultProfile.png");
+INSERT INTO users VALUES(0,"Emile", "password", "emile@email.com", 1, "defaultProfile.png");
+INSERT INTO users VALUES(0,"Julie", "password", "julie@email.com", 0, "defaultProfile.png");
+INSERT INTO users VALUES(0,"Henri", "password", "henri@email.com", 0, "defaultProfile.png");
+INSERT INTO users VALUES(0,"Charlotte", "password", "charlotte@email.com", 0, "defaultProfile.png");
 
 
 -- Table des Artiste
 CREATE TABLE artists (
   artistID        INT NOT NULL AUTO_INCREMENT,
-  artistName      VARCHAR(50),
+  artistName      VARCHAR(50) UNIQUE,
   imageFileName   VARCHAR(255),
   PRIMARY KEY (artistID)
 );
 
-INSERT INTO artists VALUES(1, "Arctic Monkeys", "noImage");
-INSERT INTO artists VALUES(2, "Wallows", "noImage");
+INSERT INTO artists VALUES(0, "Arctic Monkeys", "defaultArtist.png");
+INSERT INTO artists VALUES(0, "Ariana Grande", "defaultArtist.png");
+INSERT INTO artists VALUES(0, "The Beatles", "defaultArtist.png");
+INSERT INTO artists VALUES(0, "Billie Eyelash", "defaultArtist.png");
+INSERT INTO artists VALUES(0, "Wallows", "defaultArtist.png");
 
 
 -- Table des playlists
 CREATE TABLE playlists (
   playlistID        INT NOT NULL AUTO_INCREMENT,
-  playlistName      VARCHAR(50),
+  playlistName      VARCHAR(50) UNIQUE,
   timesPlayed       INT,
   public            TINYINT,
   imageFileName     VARCHAR(50),
@@ -54,13 +59,16 @@ CREATE TABLE playlists (
       ON UPDATE CASCADE
 );
 
-INSERT INTO playlists VALUES(1, "Chill", 0, 0, "noImage", 1);
-INSERT INTO playlists VALUES(2, "Study", 0, 0, "noImage", 2);
+INSERT INTO playlists VALUES(0, "Chill", 0, 0, "defaultPlaylist.png", 1);
+INSERT INTO playlists VALUES(0, "Study", 0, 0, "defaultPlaylist.png", 2);
+INSERT INTO playlists VALUES(0, "Driving", 0, 0, "defaultPlaylist.png", 3);
+INSERT INTO playlists VALUES(0, "Sadeness", 0, 0, "defaultPlaylist.png", 3);
+INSERT INTO playlists VALUES(0, "Riseand Shine!", 0, 0, "defaultPlaylist.png", 1);
 
 -- Table des albums
 CREATE TABLE albums (
   albumID        INT NOT NULL AUTO_INCREMENT,
-  albumName      VARCHAR(50),
+  albumName      VARCHAR(50) UNIQUE,
   imageFileName  VARCHAR(255),
   artistID       INT,
   PRIMARY KEY (albumID),
@@ -69,15 +77,15 @@ CREATE TABLE albums (
       ON UPDATE CASCADE
 );
 
-INSERT INTO albums VALUES(1, "Album1", "noImage", 1);
-INSERT INTO albums VALUES(2, "Album2", "noImage", 1);
-INSERT INTO albums VALUES(3, "Album3", "noImage", 2);
-INSERT INTO albums VALUES(4, "Album4", "noImage", 2);
+INSERT INTO albums VALUES(0, "Abbey Road", "defaultAlbum.png", 1);
+INSERT INTO albums VALUES(0, "Jungle", "defaultAlbum.png", 4);
+INSERT INTO albums VALUES(0, "Printemps", "defaultAlbum.png", 2);
+INSERT INTO albums VALUES(0, "Coffe", "defaultAlbum.png", 3);
 
 -- Table des Chansons
 CREATE TABLE songs (
   songID        INT NOT NULL AUTO_INCREMENT,
-  songName      VARCHAR(50),
+  songName      VARCHAR(50) UNIQUE,
   playTime      VARCHAR(50), 
   timesPlayed   INT,
   imageFileName VARCHAR(255),
@@ -89,10 +97,13 @@ CREATE TABLE songs (
       ON UPDATE CASCADE
 );
 
-INSERT INTO songs VALUES(1, "Wannabe", "4:25", 0, "noImage", "noFile", 1);
-INSERT INTO songs VALUES(2, "Prophets", "3:16", 0, "noImage", "noFile", 2);
-INSERT INTO songs VALUES(3, "Exctract", "4:25", 0, "noImage", "noFile", 2);
-INSERT INTO songs VALUES(4, "Love My Cat", "3:16", 0, "noImage", "noFile", 1);
+INSERT INTO songs VALUES(0, "Wannabe", "4:25", 0, "defaultSongs.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Prophets", "3:16", 0, "defaultSongs.png", "noFile", 2);
+INSERT INTO songs VALUES(0, "Exctract", "4:25", 0, "defaultSongs.png", "noFile", 3);
+INSERT INTO songs VALUES(0, "Étoile Filantes", "3:16", 0, "defaultSongs.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Bad Guy", "5:24", 0, "defaultSongs.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Hey Jude!", "3:11", 0, "defaultSongs.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Hot to Go", "2:57", 0, "defaultSongs.png", "noFile", 1);
 
 -- Table d'Association 
 
@@ -114,6 +125,12 @@ INSERT INTO playlist_song VALUES(1,3);
 INSERT INTO playlist_song VALUES(2,1);
 INSERT INTO playlist_song VALUES(2,2);
 INSERT INTO playlist_song VALUES(2,4);
+INSERT INTO playlist_song VALUES(3,1);
+INSERT INTO playlist_song VALUES(3,2);
+INSERT INTO playlist_song VALUES(3,3);
+INSERT INTO playlist_song VALUES(4,1);
+INSERT INTO playlist_song VALUES(4,2);
+INSERT INTO playlist_song VALUES(4,4);
 
 
 

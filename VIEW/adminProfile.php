@@ -1,5 +1,7 @@
 <?php 
-    if (!isset($controller)) header("Location: login.php");
+    if(!isset($controller)){header("Location: ?action=");}
+    if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+    $_SESSION["lastView"] = "adminProfile.php";
 ?>
 
 
@@ -24,7 +26,10 @@
             <a href="?action=gotoManageSong" class="button" id="btnMusique">Ajoue musique</a>
             <a href="?action=gotoManagePlaylist" class="button" id="btnPlaylist">Ajoute playlist</a>
             <br>
-            <a href="?action=gotoDiscovery" class="button" id="btnRetour">Retour</a>
+            <div>
+                <a href="?action=gotoDiscovery" class="button" id="btnRetour">Retour</a>
+                <a href="?action=logout" class="button" id="btnLogout">Logout</a>
+            </div>
         </div>
     </main>
 </body>

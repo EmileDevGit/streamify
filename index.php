@@ -9,7 +9,9 @@
 		$action = $_GET['action'];
 	}
 
+
 	$controller = Factory::creerController($action);
+	//? <script>alert("<?php echo $action
 	$view = $controller->executerAction();
 
 	include_once("VIEW/" .$view);

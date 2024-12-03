@@ -1,4 +1,6 @@
-<?php if (!isset($controller)) header("Location: ../?action="); ?>
+<?php 
+    if(!isset($controller)){header("Location: ?action=");}
+?>
 
 
 

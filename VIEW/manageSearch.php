@@ -1,5 +1,8 @@
-<?php if (!isset($controller)) { echo "Erreur : contrôleur introuvable."; exit; } 
-    
+<?php 
+    if(!isset($controller)){header("Location: ?action=");}
+    if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+    $_SESSION["lastView"] = "manageSearch.php";
+
 function afficherSongs($searchResults){
     if($searchResults!=null){
     ?><table>
@@ -10,18 +13,25 @@ function afficherSongs($searchResults){
             <th>Album</th>
             <th>Image</th>
             <th>Media</th>
+            <th>Actions</th>
         </tr>
 
         <?php
-        foreach($searchResults as $r){
-            $albumName = AlbumDAO::chercher($r->getAlbumID())->getAlbumName();
+        for($i=0;$i<count($searchResults);$i++){
+            $albumName = AlbumDAO::chercher($searchResults[$i]->getAlbumID())->getAlbumName();
             ?>
             <tr>
-                <td><?php echo $r->getSongName();?></td>
-                <td><?php echo $r->getPlayTime();?></td>
+                <td><?php echo $searchResults[$i]->getSongName();?></td>
+                <td><?php echo $searchResults[$i]->getPlayTime();?></td>
                 <td><?php echo $albumName;?></td>
-                <td><?php echo $r->getImageFileName();?></td>
-                <td><?php echo $r->getMediaFileName();?></td>
+                <td><?php echo $searchResults[$i]->getImageFileName();?></td>
+                <td><?php echo $searchResults[$i]->getMediaFileName();?></td>
+                <td>
+                    <div class=btnModDel>
+                        <a href="?action=gotoManageSong" id="modButton">Modifier</a>
+                        <a href="?action=delete&type=song&songID=<?php echo $searchResults[$i]->getSongID()?>" id="delButton">Delete</a>
+                    </div>
+                </td>
             </tr>
         
     <?php }
@@ -34,13 +44,21 @@ function afficherArtists($searchResults){
         <tr>
             <th>Nom</th>
             <th>Image</th>
+            <th>Actions</th>
         </tr>
 
         <?php
-        foreach($searchResults as $r){?>
+        for($i=0;$i<count($searchResults);$i++){
+            ?>
             <tr>
-                <td><?php echo $r->getArtisteName();?></td>
-                <td><?php echo $r->getImageFileName();?></td>
+                <td><?php echo $searchResults[$i]->getArtisteName();?></td>
+                <td><?php echo $searchResults[$i]->getImageFileName();?></td>
+                <td>
+                    <div class=btnModDel>
+                        <a href="?action=gotoManageArtiste" id="modButton">Modifier</a>
+                        <a href="?action=delete&type=artist&artistID=<?php echo $searchResults[$i]->getArtisteID()?>" id="delButton">Delete</a>
+                    </div>
+                </td>
             </tr>
     <?php } ?> 
     </table> <?php
@@ -54,16 +72,23 @@ function afficherAlbums($searchResults){
             <th>Nom</th>
             <th>Auteur</th>
             <th>Image</th>
+            <th>Actions</th>
         </tr>
 
         <?php
-        foreach($searchResults as $r){
-            $artistName = ArtistDAO::chercher($r->getArtistID())->getArtisteName();
+        for($i=0;$i<count($searchResults);$i++){
+            $artistName = ArtistDAO::chercher($searchResults[$i]->getArtistID())->getArtisteName();
             ?>
             <tr>
-                <td><?php echo $r->getAlbumName();?></td>
+                <td><?php echo $searchResults[$i]->getAlbumName();?></td>
                 <td><?php echo $artistName;?></td>
-                <td><?php echo $r->getImageFileName();?></td>
+                <td><?php echo $searchResults[$i]->getImageFileName();?></td>
+                <td>
+                    <div class=btnModDel>
+                        <a href="?action=gotoManageAlbum" id="modButton">Modifier</a>
+                        <a href="?action=delete&type=album&albumID=<?php echo $searchResults[$i]->getAlbumID()?>" id="delButton">Delete</a>
+                    </div>
+                </td>
             </tr>
     <?php }?> 
     </table> <?php
@@ -79,16 +104,23 @@ function afficherUsers($searchResults){
             <th>Email</th>
             <th>Admin</th>
             <th>Image</th>
+            <th>Actions</th>
         </tr>
 
         <?php
-        foreach($searchResults as $r){?>
+        for($i=0;$i<count($searchResults);$i++){?>
             <tr>
-                <td><?php echo $r->getUserName();?></td>
-                <td><?php echo $r->getPassword();?></td>
-                <td><?php echo $r->getEmail();?></td>
-                <td><?php echo $r->getAdminStatus();?></td>
-                <td><?php echo $r->getImageFileName();?></td>
+                <td><?php echo $searchResults[$i]->getUserName();?></td>
+                <td><?php echo $searchResults[$i]->getPassword();?></td>
+                <td><?php echo $searchResults[$i]->getEmail();?></td>
+                <td><?php echo $searchResults[$i]->getAdminStatus();?></td>
+                <td><?php echo $searchResults[$i]->getImageFileName();?></td>
+                <td>
+                    <div class=btnModDel>
+                        <a href="?action=gotoManageUsers" id="modButton">Modifier</a>
+                        <a href="?action=delete&type=user&userID=<?php echo $searchResults[$i]->getUserID()?>" id="delButton">Delete</a>
+                    </div>
+                </td>
             </tr>
     <?php }?> 
     </table> <?php
@@ -142,20 +174,13 @@ function afficherUsers($searchResults){
                         $generalAlbums = $_COOKIE["generalAlbums"];
                         $generalArtists = $_COOKIE["generalArtists"];
                         $generalUsers = $_COOKIE["generalUsers"];
-
-                        // Clear les cookies de résultats
-                        unset($_COOKIE["generalSearch"]);
-                        unset($_COOKIE["generalSongs"]);
-                        unset($_COOKIE["generalSongs"]);
-                        unset($_COOKIE["generalSongs"]);
-                        unset($_COOKIE["generalSongs"]);
                     }
-                    if(isset($_COOKIE["category"])){
-                        unset($_COOKIE["category"]);
-                    }
-                    if(isset($_COOKIE["searchResults"])){
-                        unset($_COOKIE["searchResults"]);
-                    }
+                    unset($_COOKIE["category"]);
+                    unset($_COOKIE["generalSongs"]);
+                    unset($_COOKIE["generalAlbums"]);
+                    unset($_COOKIE["generalArtists"]);
+                    unset($_COOKIE["generalUsers"]);
+                    unset($_COOKIE["searchResults"]);
 
                     switch ($category){
                         case "songs":
@@ -181,6 +206,7 @@ function afficherUsers($searchResults){
                             echo "<br>";
                             afficherArtists($generalArtists);
                             echo "<br>";
+                            
                             break;
                         default:
                             break;

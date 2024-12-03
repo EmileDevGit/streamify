@@ -3,7 +3,7 @@
 	abstract class Controller {
 
 		protected $messagesErreur = array();
-		protected $user = "";
+		protected $user = "guest";
 		protected $action = "";
 
 		public function __construct() {
@@ -21,7 +21,7 @@
 		abstract public function executerAction();
 
 		private function determinerActor():void {
-		
+			
 			session_start();
 			if (isset($_SESSION['connectedUser'])) {
 				$this->user = $_SESSION['connectedUser'];

@@ -1,4 +1,23 @@
-<?php if (!isset($controller)) header("Location: ../?action="); ?>
+<?php 
+    if(!isset($controller)){header("Location: ?action=");}
+    if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+
+    function goBack(){
+        if(isset($_SESSION["lastView"])){
+            $lastView = $_SESSION["lastView"];
+            switch (true){
+                case $lastView == "library.php":
+                    return "gotoLibrary";
+                    break;
+                case $lastView == "adminProfile.php":
+                default:
+                    return "gotoProfile";
+                    break;
+            }
+        }
+    }
+?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,7 +58,7 @@
             <div>
                 <button type="submit" class="button button-add">Ajouter la playlist</button>
         </form>
-        <a href="?action=gotoProfile" class="button" id="btnRetour">Retour</a>
+        <a href="?action=<?php echo goBack();?>" class="button" id="btnRetour">Retour</a>
             </div>
     </main>
 

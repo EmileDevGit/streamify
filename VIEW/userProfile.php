@@ -1,4 +1,7 @@
-<?php if (!isset($controller)) header("Location: ../?action="); ?>
+<?php 
+    if(!isset($controller)){header("Location: ?action=");}
+    if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+?>
 
 
 
@@ -27,6 +30,7 @@
             <section class="setting">
                 <p>Account Setting</p>
             </section>
+            <a href="?action=logout" class="setting">Logout</a>
             <h2>Vos playlists publiques</h2>
         </section>
 

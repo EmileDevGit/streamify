@@ -8,6 +8,7 @@
 			parent::__construct();
 		}
 		public function executerAction():string {
+			session_unset();
 			return "login.php";
 		}
 

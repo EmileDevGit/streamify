@@ -38,16 +38,21 @@ main h3{
 
 .controls .buttons{
     width: 39%;
-    display: flex;
-    justify-content: space-between;
 }
-.controls .buttons button{
+.controls button{
+    text-decoration: none;
+    color: var(--surface0);
+    font-weight: 600;
     margin-top: 10px;
     border-radius: 19px;
     padding: 7px;
     padding-right: 10px;
     border: none;
     background-color: var(--mauve);
+}
+.controls button:hover{
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .list > div{

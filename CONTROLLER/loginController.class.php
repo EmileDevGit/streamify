@@ -37,6 +37,7 @@
 			if($user->getPassword() == $_POST["userPasswd"]){
 
 				// initialisation du tableau de SESSION
+				$_SESSION["connectedUser"]="user";
 				$_SESSION["userID"] = $user->getUserID();
 				$_SESSION["password"] = $user->getPassword();
 				$_SESSION["adminStatus"] = $user->getAdminStatus();
