@@ -2,9 +2,28 @@
     if(!isset($controller)){header("Location: ?action=");}
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
     $_SESSION["lastView"] = "library.php";
+
+    // Fonction d'affichage des playlists de l'utilisateur
+    function displayPlaylists(){
+        $tabPlaylists = PlaylistDAO::chercherTous();
+        for ($i=0;$i<count($tabPlaylists);$i++){
+            $playlist = $tabPlaylists[$i];
+            if($playlist->getUserID()==$_SESSION["userID"]){
+                ?>
+                    <div class="playlistElement">
+                        <div class="playlist-image-container">
+                            <a href="?action=gotoPlaylist&playlistID=<?php echo $playlist->getPlaylistID();?>">
+                                <img src="VIEW/IMAGES/playlist/<?php echo $playlist->getImageFileName(); ?>" alt="PlaylistImg" class="playlist-image">
+                            </a>
+                            <button class="playButton">PLAY</button>
+                            </div>
+                        <h4 class="playlist-title"><?php echo $playlist->getPlaylistName();?></h4>
+                    </div> 
+                <?php
+            }
+        }
+    }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +36,10 @@
 </head>
 
 <body>
-
-    <?php include_once("commons/header.inc.php");?>
-
+    <?php 
+        // Inclure l'entête 
+        include_once("commons/header.inc.php");
+    ?>
     <main>
         <div class="controls">
             <div class="title">
@@ -34,24 +54,9 @@
         </div>
         <div class="list">
             <div class="playlists">
-                <div class="playlistElement">
-                    <div class="playlist-image-container">
-                        <a href="playlist.php"><img src="../IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
-                        <button class="playButton">PLAY</button>
-                    </div>
-                    <h4 class="playlist-title">Titre de Playlist</h4>
-                    <p class="playlist-description">Description de la playlist ici</p>
-                </div>
-
-                <div class="playlistElement">
-                    <div class="playlist-image-container">
-                        <a href="playlist.php"><img src="../IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
-                        <button class="playButton">PLAY</button>
-                    </div>
-                    <h4 class="playlist-title">Titre de Playlist</h4>
-                    <p class="playlist-description">Description de la playlist ici</p>
-                </div>
-
+                <?php 
+                    displayPlaylists();
+                ?>
             </div>
         </div>
     </main>

@@ -59,11 +59,11 @@ CREATE TABLE playlists (
       ON UPDATE CASCADE
 );
 
-INSERT INTO playlists VALUES(0, "Chill", 0, 0, "defaultPlaylist.png", 1);
-INSERT INTO playlists VALUES(0, "Study", 0, 0, "defaultPlaylist.png", 2);
-INSERT INTO playlists VALUES(0, "Driving", 0, 0, "defaultPlaylist.png", 3);
-INSERT INTO playlists VALUES(0, "Sadeness", 0, 0, "defaultPlaylist.png", 3);
-INSERT INTO playlists VALUES(0, "Riseand Shine!", 0, 0, "defaultPlaylist.png", 1);
+INSERT INTO playlists VALUES(0, "Chill", 0, 1, "defaultPlaylist.png", 1);
+INSERT INTO playlists VALUES(0, "Study", 0, 1, "defaultPlaylist.png", 2);
+INSERT INTO playlists VALUES(0, "Driving", 0, 1, "defaultPlaylist.png", 3);
+INSERT INTO playlists VALUES(0, "Sadeness", 0, 1, "defaultPlaylist.png", 3);
+INSERT INTO playlists VALUES(0, "Riseand Shine!", 0, 1, "defaultPlaylist.png", 1);
 
 -- Table des albums
 CREATE TABLE albums (
@@ -97,13 +97,13 @@ CREATE TABLE songs (
       ON UPDATE CASCADE
 );
 
-INSERT INTO songs VALUES(0, "Wannabe", "4:25", 0, "defaultSongs.png", "noFile", 1);
-INSERT INTO songs VALUES(0, "Prophets", "3:16", 0, "defaultSongs.png", "noFile", 2);
-INSERT INTO songs VALUES(0, "Exctract", "4:25", 0, "defaultSongs.png", "noFile", 3);
-INSERT INTO songs VALUES(0, "Étoile Filantes", "3:16", 0, "defaultSongs.png", "noFile", 1);
-INSERT INTO songs VALUES(0, "Bad Guy", "5:24", 0, "defaultSongs.png", "noFile", 4);
-INSERT INTO songs VALUES(0, "Hey Jude!", "3:11", 0, "defaultSongs.png", "noFile", 4);
-INSERT INTO songs VALUES(0, "Hot to Go", "2:57", 0, "defaultSongs.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Wannabe", "4:25", 0, "defaultSong.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Prophets", "3:16", 0, "defaultSong.png", "noFile", 2);
+INSERT INTO songs VALUES(0, "Exctract", "4:25", 0, "defaultSong.png", "noFile", 3);
+INSERT INTO songs VALUES(0, "Étoile Filantes", "3:16", 0, "defaultSong.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Bad Guy", "5:24", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Hey Jude!", "3:11", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Hot to Go", "2:57", 0, "defaultSong.png", "noFile", 1);
 
 -- Table d'Association 
 

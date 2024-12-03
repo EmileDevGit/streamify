@@ -18,7 +18,6 @@
 		}
 		
 		public function executerAction():string {
-
 			$user = null;
 			// Vérification si les POST sont bien initialisés
 			if(!isset($_POST["userName"]) || !isset($_POST["userPasswd"])){

@@ -1,14 +1,31 @@
 <?php 
     if(!isset($controller)){header("Location: ?action=");}
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+    if(isset($_SESSION["userID"])){
+        $userObject = UserDAO::chercher($_SESSION["userID"]);
+    }
+
+
+    function displayPlaylist($userObject){
+        $tabPlaylists = $userObject->getPlaylists();
+        for ($i=0;$i<count($tabPlaylists);$i++){
+            $playlist = $tabPlaylists[$i];
+            if($playlist->getVisibility() == 1){
+                ?>
+                    <div class="playlistElement">
+                        <div class="playlist-image-container">
+                            <a href="?action=gotoPlaylist&playlistID=<?php echo $playlist->getPlaylistID();?>">
+                                <img src="VIEW/IMAGES/playlist/<?php echo $playlist->getImageFileName(); ?>" alt="PlaylistImg" class="playlist-image">
+                            </a>
+                            <button class="makePrivateButton">Make private</button>
+                        </div>
+                        <h4 class="playlist-title"><?php echo $playlist->getPlaylistName();?></h4>
+                    </div>
+                <?php
+            }
+        }
+    }
 ?>
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,13 +36,13 @@
     <link rel="stylesheet" href="VIEW/CSS/userProfileStyle.css">
 </head>
 <body>
-
+    
     <?php include_once("commons/header.inc.php");?>
     
     <main>
         <section class="profile">
             <div class="profile-picture">
-                <img src="IMAGES/profileIconpng.png" alt="Profil">
+                <img src="VIEW/IMAGES/profile/<?php echo $userObject->getImageFileName(); ?>" alt="Profil">
             </div>
             <section class="setting">
                 <p>Account Setting</p>
@@ -35,34 +52,8 @@
         </section>
 
         <section class="playlists">
-            <div class="playlistElement">
-                <div class="playlist-image-container">
-                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
-                    <button class="makePrivateButton">Make private</button>
-                </div>
-                <h4 class="playlist-title">Titre de Playlist</h4>
-                <p class="playlist-description">Description de la playlist ici</p>
-            </div>
-            <div class="playlistElement">
-                <div class="playlist-image-container">
-                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
-                    <button class="makePrivateButton">Make private</button>
-                </div>
-                <h4 class="playlist-title">Titre de Playlist</h4>
-                <p class="playlist-description">Description de la playlist ici</p>
-            </div>
-            <div class="playlistElement">
-                <div class="playlist-image-container">
-                    <a href="playlist.php"><img src="IMAGES/playlistcover.jpg" alt="PlaylistImg" class="playlist-image"></a>
-                    <button class="makePrivateButton">Make private</button>
-                </div>
-                <h4 class="playlist-title">Titre de Playlist</h4>
-                <p class="playlist-description">Description de la playlist ici</p>
-            </div>
-            
+            <?php displayPlaylist($userObject); ?>
         </section>
-        <footer>
-        </footer>
     </main>
 </body>
 </html>

@@ -43,7 +43,7 @@
         public function getImageFileName():string{
             return $this->imageFileName;
         }
-        public function getTabSongs():string{
+        public function getTabSongs():array{
             return $this->tabSongs;
         }
         public function getUserID():string{

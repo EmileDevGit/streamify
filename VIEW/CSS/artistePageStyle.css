@@ -108,6 +108,19 @@ body {
     font-size: 100%;
     color: var(--subText0);
 }
+.picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 25%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+.picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* Boutons Musique */
 .add-button, .play-button {

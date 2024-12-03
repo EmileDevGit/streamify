@@ -16,7 +16,6 @@
 		public function executerAction():string {
             $action = $_GET['action'];
             
-			
             switch (true){
                 case $action == "gotoManagePlaylist": 
                     if($_SESSION["adminStatus"] == 1){
@@ -76,9 +75,15 @@
                 case $action == "gotoLibrary":
                     return "library.php";
                     break;
+                case $action == "gotoPlaylist":
+                    return "playlist.php";
+                    break;
+                case $action == "gotoArtistProfile":
+                    return "artistePage.php";
+                    break;
                 default : 
                     ?> <script>alert("Une erreur est survenue, veuillez vous reconnecter.")</script> <?php
-                    return "login.php";
+                    new Logout();
                     break;
 		}
 	}

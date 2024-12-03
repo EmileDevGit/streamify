@@ -71,7 +71,7 @@ body {
     display: grid;
     border: solid 2px var(--lavander);
     border-radius: 15px;
-    max-height: 150px;
+    max-height: fit-content;
     min-height: 150px;
     grid-template-columns: 25% 75%;
 

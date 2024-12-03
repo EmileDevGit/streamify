@@ -158,7 +158,6 @@ class ArtistDAO implements DAO {
         // Retour du résultat true|false
         return $retour;
     }
-
     private static function resetID(){
         try {
             $connexion=ConnexionDB::getInstance();

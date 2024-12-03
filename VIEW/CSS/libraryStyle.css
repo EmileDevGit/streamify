@@ -77,8 +77,8 @@ main h3{
     border-radius: 10px;
     text-align: left;
     box-shadow: 0 4px 8px black;
-    transition: transform 0.2s;
     flex-shrink: 0;
+    transition: transform 0.2s;
 }
 
 .playlist-image-container {

@@ -31,10 +31,10 @@
                     $e['playlistID'],
                     $e['playlistName'],
                     $e['timesPlayed'],
-                    $e['userID'],
                     $e['public'],
                     $e['imageFileName'],
-                    $tabSongs
+                    $tabSongs,
+                    $e['userID']
                 );
             }
 
@@ -46,7 +46,7 @@
             return $playlist;
         }
         public static function chercherAvecFiltre(string $filtre):array{
-
+            echo "HERE";
             // Connexion à la base de données & Initialisation
             try {
                 $connexion=ConnexionDB::getInstance();
@@ -56,7 +56,7 @@
             $tabPlaylist=[];
 
             // Préparation de la requête
-            $query = $connexion->prepare("SELECT * FROM playlists WHERE playlistName = ?");
+            $query = $connexion->prepare("SELECT * FROM playlists WHERE playlistName LIKE ?");
 
             // Exécution de la requête et assemblage du tableau d'utilisateurs
             $query->execute(array("%".$filtre ."%"));
@@ -67,10 +67,10 @@
                     $e['playlistID'],
                     $e['playlistName'],
                     $e['timesPlayed'],
-                    $e['userID'],
                     $e['public'],
                     $e['imageFileName'],
-                    $tabSongs
+                    $tabSongs,
+                    $e['userID']
                 );
                 $tabPlaylist[] = $playlist;
             }
@@ -104,10 +104,10 @@
                     $e['playlistID'],
                     $e['playlistName'],
                     $e['timesPlayed'],
-                    $e['userID'],
                     $e['public'],
                     $e['imageFileName'],
-                    $tabSongs
+                    $tabSongs,
+                    $e['userID']
                 );
                 $tabPlaylist[] = $playlist;
             }
@@ -234,10 +234,11 @@
                     $e['playlistID'],
                     $e['playlistName'],
                     $e['timesPlayed'],
-                    $e['userID'],
                     $e['public'],
                     $e['imageFileName'],
-                    $tabSongs
+                    $tabSongs,
+                    $e['userID']
+                    
                 );
                 $tabPlaylist[] = $playlist;
             }

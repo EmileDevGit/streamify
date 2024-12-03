@@ -1,9 +1,28 @@
 <?php 
     if(!isset($controller)){header("Location: ?action=");}
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
+    $playlistID = $_GET["playlistID"];
+    $playlistObject = PlaylistDAO::chercher($playlistID);
+
+    function displaySongs($playlistObject){
+        $tabSongs = $playlistObject->getTabSongs();
+        for($i=0;$i<count($tabSongs);$i++){
+            $artist = ArtistDAO::chercher($tabSongs[$i]->getSongID());
+            ?>
+                <div class="songElement">
+                    <div class="songImageContainer">
+                        <img src="VIEW/IMAGES/song/<?php echo $tabSongs[$i]->getImageFileName(); ?>" alt="songImage">
+                    </div>
+                    <div class="songInfo">
+                        <h3><?php echo $tabSongs[$i]->getSongName();?></h3>
+                        <p><?php echo $artist->getArtisteName();?></p>
+                        <button>Play</button>
+                    </div>
+                </div>
+            <?php
+        }
+    }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +39,11 @@
     <main>
         <div class="playlistHead">
             <div class="imageContainer">
-                <img src="IMAGES/playlistcover.jpg" alt="playlistCover">
+                <img src="VIEW/IMAGES/playlist/<?php echo $playlistObject->getImageFileName();?>" alt="playlistCover">
             </div>
             <div class="playlistInfo">
-                <h1>Titre de la playlist</h1>
-                <h2>Artiste</h2>
+                <h1><?php echo $playlistObject->getPlaylistName(); ?></h1>
+                <h1></h1>
                 <div class="playButton">
                     <button>Play</button>
                 </div>
@@ -33,37 +52,10 @@
         
 
         <div class="songs">
-            <div class="songElement">
-                <div class="songImageContainer">
-                    <img src="IMAGES" alt="songImage">
-                </div>
-                <div class="songInfo">
-                    <h3>Titre de la chanson</h3>
-                    <p>Description ici</p>
-                    <button>Play</button>
-                </div>
-            </div>
-            <div class="songElement">
-                <div class="songImageContainer">
-                    <img src="IMAGES" alt="songImage">
-                </div>
-                <div class="songInfo">
-                    <h3>Titre de la chanson</h3>
-                    <p>Description ici</p>
-                    <button>Play</button>
-                </div>
-            </div>
-            <div class="songElement">
-                <div class="songImageContainer">
-                    <img src="IMAGES" alt="songImage">
-                </div>
-                <div class="songInfo">
-                    <h3>Titre de la chanson</h3>
-                    <p>Description ici</p>
-                    <button>Play</button>
-                </div>
-            </div>
-
+            <?php 
+                // Affichage des chansons dans la playlist
+                displaySongs($playlistObject);
+            ?>
         </div>
         
 

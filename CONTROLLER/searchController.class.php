@@ -5,6 +5,7 @@ include_once("MODEL/DAO/SongDAO.php");
 include_once("MODEL/DAO/ArtistDAO.php");
 include_once("MODEL/DAO/AlbumDAO.php");
 include_once("MODEL/DAO/UserDAO.php");
+include_once("MODEL/DAO/PlaylistDAO.php");
 
 class SearchController extends Controller {
 
@@ -29,6 +30,9 @@ class SearchController extends Controller {
                 case "albums":
                     $results = !isset($query) ? AlbumDAO::chercherTous() : AlbumDAO::chercherAvecFiltre($query);
                     break;
+                case "playlists":
+                    $results = !isset($query) ? PlaylistDAO::chercherTous() : PlaylistDAO::chercherAvecFiltre($query);
+                    break;
                 case "users":
                     $results = !isset($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
                     break;
@@ -36,12 +40,14 @@ class SearchController extends Controller {
                     $generalSongs = !isset($query) ? SongDAO::chercherTous() : SongDAO::chercherAvecFiltre($query);
                     $generalArtists = !isset($query) ? ArtistDAO::chercherTous() : ArtistDAO::chercherAvecFiltre($query);
                     $generalAlbums = !isset($query) ? AlbumDAO::chercherTous() : AlbumDAO::chercherAvecFiltre($query);
+                    $generalPlaylists = !isset($query) ? PlaylistDAO::chercherTous() : PlaylistDAO::chercherAvecFiltre($query);
                     $generalUsers = !isset($query) ? UserDAO::chercherTous() : UserDAO::chercherAvecFiltre($query);
                     
                     $_COOKIE["generalSearch"] = true;
                     $_COOKIE["generalSongs"] = $generalSongs;
                     $_COOKIE["generalArtists"] = $generalArtists;
                     $_COOKIE["generalAlbums"] = $generalAlbums;
+                    $_COOKIE["generalPlaylists"] = $generalPlaylists;
                     $_COOKIE["generalUsers"] = $generalUsers;
 
                     break;

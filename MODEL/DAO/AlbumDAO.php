@@ -193,7 +193,6 @@
             // Retour du résultat true|false
             return $retour;
         }
-
         private static function resetID(){
             try {
                 $connexion=ConnexionDB::getInstance();
@@ -206,7 +205,6 @@
             $query->closeCursor();
             ConnexionDB::close();
         }
-
         // Méthode pour populer un album
         public static function collectAlbums(string $artistID){
             // Connexion à la base de données & Initialisation

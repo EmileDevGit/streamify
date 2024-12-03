@@ -245,7 +245,6 @@ class SongDAO implements DAO{
        //Renvoie du tableau des User trouvés
        return $tabSongs;
     }
-
     public static function remplirAlbum(int $albumID):array{
             // Connexion à la base de données & Initialisation
             try {

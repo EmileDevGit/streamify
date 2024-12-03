@@ -22,6 +22,7 @@ main {
 }
 
 .form-container {
+    text-align: left;
     background-color: var(--surface0);
     padding: 20px;
     border-radius: 15px;

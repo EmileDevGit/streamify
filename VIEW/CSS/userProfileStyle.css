@@ -64,24 +64,36 @@ a {
 }
 
 .playlistElement {
-    background-color: var(--surface1);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px black;
     padding: 10px;
-    width: 150px;
-    text-align: center;
+    width: 200px;
+    height: auto;
+    border: 2px solid var(--lavander);
+    background-color: var(--crust);
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px black;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+.playlistElement:hover{
+    transform: scale(1.05);
 }
 
 .playlist-image-container {
-    position: relative;
     width: 100%;
+    height: 150px; 
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .playlist-image {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; 
     border-radius: 10px;
 }
 
@@ -110,12 +122,6 @@ a {
     font-weight: bold;
     color: var(--text);
     margin-top: 10px;
-}
-
-.playlist-description {
-    font-size: 90%;
-    color: var(--subText0);
-    margin-top: 5px;
 }
 
 /* Setting Section */

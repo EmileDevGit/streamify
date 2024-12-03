@@ -3,6 +3,7 @@
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
     $_SESSION["lastView"] = "manageSearch.php";
 
+    // fonctions d'affichage des résultats
 function afficherSongs($searchResults){
     if($searchResults!=null){
     ?><table>
@@ -36,10 +37,11 @@ function afficherSongs($searchResults){
         
     <?php }
     ?> </table> <?php
-        }
+    } 
 }
 function afficherArtists($searchResults){
-    if($searchResults!=null){?> <table>
+    if($searchResults!=null){
+        ?> <table>
     <caption>Artistes</caption>
         <tr>
             <th>Nom</th>
@@ -94,6 +96,40 @@ function afficherAlbums($searchResults){
     </table> <?php
     }
 }
+function afficherPlaylists($searchResults){
+    if($searchResults!=null){?>
+        <table>
+        <caption>Playlists</caption>
+            <tr>
+                <th>Nom</th>
+                <th>Nbre Écoutes</th>
+                <th>Visibilitée</th>
+                <th>Image</th>
+                <th>Owner</th>
+                <th>Actions</th>
+            </tr>
+    
+            <?php
+            for($i=0;$i<count($searchResults);$i++){
+                $ownerName = UserDAO::chercher($searchResults[$i]->getUserID())->getUserName();
+                ?>
+                <tr>
+                    <td><?php echo $searchResults[$i]->getPlaylistName();?></td>
+                    <td><?php echo $searchResults[$i]->getTimesPlayed();?></td>
+                    <td><?php echo $searchResults[$i]->getVisibility();?></td>
+                    <td><?php echo $searchResults[$i]->getImageFileName();?></td>
+                    <td><?php echo $ownerName?></td>
+                    <td>
+                        <div class=btnModDel>
+                            <a href="?action=gotoManageUsers" id="modButton">Modifier</a>
+                            <a href="?action=delete&type=playlist&playlistID=<?php echo $searchResults[$i]->getPlaylistID()?>" id="delButton">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+        <?php }?> 
+        </table> <?php
+    }
+}
 function afficherUsers($searchResults){
     if($searchResults!=null){?>
     <table>
@@ -126,8 +162,6 @@ function afficherUsers($searchResults){
     </table> <?php
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -144,12 +178,12 @@ function afficherUsers($searchResults){
         <form action="?action=search" method="POST" class="form-container">
             <label for="searchCategory">Catégorie de recherche :</label>
             <select id="searchCategory" name="category" required>
-                <option value="">Choisir une catégorie</option>
+                <option value="generalSearch" >Recherche générale</option>
                 <option value="songs" >Musique</option>
                 <option value="artists" >Artiste</option>
+                <option value="playlists" >Playlist</option>
                 <option value="albums" >Album</option>
                 <option value="users" >Utilisateur</option>
-                <option value="generalSearch" >Recherche générale</option>
             </select>
 
             <label for="searchQuery">Rechercher :</label>
@@ -164,7 +198,7 @@ function afficherUsers($searchResults){
     <div class="result">
         <h2>Résultats de la recherche</h2>
             <?php
-                if (isset($_COOKIE['searchResults']) && !empty($_COOKIE['searchResults']) || isset($_COOKIE["generalSearch"])){
+                if (isset($_COOKIE['searchResults']) && !empty($_COOKIE['searchResults'])|| isset($_COOKIE["generalSearch"])){
 
                     $category = $_COOKIE["category"];
                     $searchResults = $_COOKIE["searchResults"];
@@ -173,14 +207,9 @@ function afficherUsers($searchResults){
                         $generalSongs = $_COOKIE["generalSongs"];
                         $generalAlbums = $_COOKIE["generalAlbums"];
                         $generalArtists = $_COOKIE["generalArtists"];
+                        $generalPlaylists = $_COOKIE["generalPlaylists"];
                         $generalUsers = $_COOKIE["generalUsers"];
                     }
-                    unset($_COOKIE["category"]);
-                    unset($_COOKIE["generalSongs"]);
-                    unset($_COOKIE["generalAlbums"]);
-                    unset($_COOKIE["generalArtists"]);
-                    unset($_COOKIE["generalUsers"]);
-                    unset($_COOKIE["searchResults"]);
 
                     switch ($category){
                         case "songs":
@@ -195,18 +224,22 @@ function afficherUsers($searchResults){
                         case "users":
                             afficherUsers($searchResults);
                             break;
+                        case "playlists":
+                            afficherPlaylists($searchResults);
+                            break;
                         case "generalSearch":
                             if($_SESSION["adminStatus"] == 1){
                                 afficherUsers($generalUsers);
                                 echo "<br>";
                             }
+                            afficherPlaylists($generalPlaylists);
+                            echo "<br>";
                             afficherSongs($generalSongs);
                             echo "<br>";
                             afficherAlbums($generalAlbums);
                             echo "<br>";
                             afficherArtists($generalArtists);
                             echo "<br>";
-                            
                             break;
                         default:
                             break;

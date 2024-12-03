@@ -2,12 +2,6 @@
     if(!isset($controller)){header("Location: ?action=");}
 ?>
 
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
