@@ -79,6 +79,10 @@ INSERT INTO albums VALUES(0, "Abbey Road", "defaultAlbum.png", 1);
 INSERT INTO albums VALUES(0, "Jungle", "defaultAlbum.png", 4);
 INSERT INTO albums VALUES(0, "Printemps", "defaultAlbum.png", 2);
 INSERT INTO albums VALUES(0, "Coffe", "defaultAlbum.png", 3);
+INSERT INTO albums VALUES(0, "MYMY", "defaultAlbum.png", 3);
+INSERT INTO albums VALUES(0, "Dance Tonight", "defaultAlbum.png", 3);
+INSERT INTO albums VALUES(0, "Whatever", "defaultAlbum.png", 3);
+INSERT INTO albums VALUES(0, "Here for You", "defaultAlbum.png", 3);
 
 -- Table des Chansons
 CREATE TABLE songs (
@@ -102,6 +106,11 @@ INSERT INTO songs VALUES(0, "Étoile Filantes", "3:16", 0, "defaultSong.png", "n
 INSERT INTO songs VALUES(0, "Bad Guy", "5:24", 0, "defaultSong.png", "noFile", 4);
 INSERT INTO songs VALUES(0, "Hey Jude!", "3:11", 0, "defaultSong.png", "noFile", 4);
 INSERT INTO songs VALUES(0, "Hot to Go", "2:57", 0, "defaultSong.png", "noFile", 1);
+INSERT INTO songs VALUES(0, "Santa Monica", "3:11", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Renaissance", "3:11", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Over the Moon", "3:11", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Only Once", "3:11", 0, "defaultSong.png", "noFile", 4);
+INSERT INTO songs VALUES(0, "Bye!", "3:11", 0, "defaultSong.png", "noFile", 4);
 
 -- Table d'Association 
 
