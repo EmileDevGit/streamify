@@ -4,8 +4,8 @@
 	
 
 	if(!ISSET($_GET['action'])){
-         $action="";
-	}else{
+        $action="";
+	} else {
 		$action = $_GET['action'];
 	}
 
@@ -14,18 +14,8 @@
 	//? <script>alert("<?php echo $action
 	$view = $controller->executerAction();
 
-	include_once("VIEW/" .$view);
-
-
-
-
-
-
-
-
-
 	
-
+	include_once("VIEW/" .$view);
 	//? <script>alert("test")</script> <?php
 
 ?>

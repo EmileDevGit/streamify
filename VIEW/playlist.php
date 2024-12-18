@@ -1,4 +1,4 @@
-<?php 
+<?php
     if(!isset($controller)){header("Location: ?action=");}
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
     $playlistID = $_GET["playlistID"];
@@ -14,9 +14,9 @@
                         <img src="VIEW/IMAGES/song/<?php echo $tabSongs[$i]->getImageFileName(); ?>" alt="songImage">
                     </div>
                     <div class="songInfo">
-                        <h3><?php echo $tabSongs[$i]->getSongName();?></h3>
+                        <h3 id="songTitle<?php echo $i?>"><?php echo $tabSongs[$i]->getSongName();?></h3>
                         <p><?php echo $artist->getArtisteName();?></p>
-                        <button>Play</button>
+                        <button onclick="playMedia(<?php echo $i?>)">Play</button>
                     </div>
                 </div>
             <?php
@@ -60,6 +60,6 @@
         
 
     </main>
-    
+    <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
 </body>
 </html>

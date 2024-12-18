@@ -94,6 +94,8 @@ body {
 }
 .play-button:hover {
     background-color: var(--teal);
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 
@@ -227,10 +229,14 @@ body {
 
 .profile-button:hover {
     background-color: #969ed6;
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .add-button:hover {
     background-color: var(--lavander);
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 @media (max-width: 600px) {

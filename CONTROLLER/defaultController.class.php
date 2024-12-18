@@ -10,12 +10,9 @@
 		public function executerAction():string {
 			session_unset();
 			return "login.php";
+			//return "commons/mediaPlayer.inc.php";
 		}
 
-		
-
-
-		
-	}	
+	}
 	
 ?>

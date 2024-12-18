@@ -1,4 +1,4 @@
-<?php 
+<?php
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
 
     // Fonctions d'Affichage des Éléments du Jour
@@ -8,17 +8,20 @@
             $song = $tabsongs[$i];
             $album = AlbumDAO::chercher($song->getSongID());
             ?>
+            <script>
+                alert("<?php echo $song->getMediaFileName()?>");
+            </script>
                 <div class="musique">
                     <div class="musique-content">
                         <div class="musique-info">
                             <div class="picture">
-                                <img src="VIEW/IMAGES/song/<?php echo $song->getImageFileName(); ?>" alt="SongImage">
+                                <img id="songImage<?php echo $i?>" src="VIEW/IMAGES/song/<?php echo $song->getImageFileName(); ?>" alt="SongImage">
                             </div>
-                            <p><?php echo $song->getSongName();?></p>
+                            <p id="songTitle<?php echo $i?>"><?php echo $song->getSongName();?></p>
                             <p><?php echo $album->getAlbumName();?></p>
                         </div>
                     </div>
-                    <button class="play-button">PLAY</button>
+                    <button onclick="playMedia(<?php echo $i?>)" id="play-button" class="play-button">PLAY</button>
                     <button class="add-button">ADD</button>
                 </div>
             <?php
@@ -34,7 +37,7 @@
                         <img src="VIEW/IMAGES/artist/<?php echo $artist->getImageFileName(); ?>" alt="ArtisteImage">
                     </div>
                     <h4 class="artist-name"><?php echo $artist->getArtisteName();?></h4>
-                    <a href="?action=gotoArtistProfile&artistID=<?php echo $artist->getArtisteID();?>"><button class="profile-button">PROFILE</button></a>
+                    <a id="gotoArtistPage" href="?action=gotoArtistProfile&artistID=<?php echo $artist->getArtisteID();?>"><button class="profile-button">PROFILE</button></a>
                 </div>
             <?php
         }
@@ -72,7 +75,7 @@
 </head>
 <body>
     
-    <?php 
+    <?php
         // Inclure l'entête
         include_once("commons/header.inc.php");
     ?>
@@ -109,5 +112,6 @@
             </div>
         </section>
     </main>
+    <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
 </body>
 </html>

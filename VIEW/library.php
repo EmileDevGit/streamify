@@ -15,10 +15,10 @@
                             <a href="?action=gotoPlaylist&playlistID=<?php echo $playlist->getPlaylistID();?>">
                                 <img src="VIEW/IMAGES/playlist/<?php echo $playlist->getImageFileName(); ?>" alt="PlaylistImg" class="playlist-image">
                             </a>
-                            <button class="playButton">PLAY</button>
+                            <button onclick="playMedia()" class="playButton">PLAY</button>
                             </div>
                         <h4 class="playlist-title"><?php echo $playlist->getPlaylistName();?></h4>
-                    </div> 
+                    </div>
                 <?php
             }
         }
@@ -36,8 +36,8 @@
 </head>
 
 <body>
-    <?php 
-        // Inclure l'entête 
+    <?php
+        // Inclure l'entête
         include_once("commons/header.inc.php");
     ?>
     <main>
@@ -54,12 +54,13 @@
         </div>
         <div class="list">
             <div class="playlists">
-                <?php 
+                <?php
                     displayPlaylists();
                 ?>
             </div>
         </div>
     </main>
+    <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
 </body>
 
 </html>

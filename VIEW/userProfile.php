@@ -55,5 +55,6 @@
             <?php displayPlaylist($userObject); ?>
         </section>
     </main>
+    <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
 </body>
 </html>

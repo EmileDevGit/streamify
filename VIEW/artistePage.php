@@ -1,4 +1,4 @@
-<?php 
+<?php
     if(!isset($controller)){header("Location: ?action=");}
     if ($_SESSION["connectedUser"] != "user") {header("Location: ?action=");}
 
@@ -39,12 +39,12 @@
                             <div class="picture">
                                 <img src="VIEW/IMAGES/song/<?php echo $tabSongs[$i]->getImageFileName(); ?>" alt="SongImage">
                             </div>
-                                <p><?php echo $tabSongs[$i]->getSongName(); ?></p>
+                                <p id="songTitle<?php echo $i?>"><?php echo $tabSongs[$i]->getSongName(); ?></p>
                                 <p><?php echo $album->getAlbumName(); ?></p>
                             </div>
                         </div>
                         <button class="add-button">ADD</button>
-                        <button class="play-button">PLAY</button>
+                        <button onclick="playMedia(<?php echo $i?>)" class="play-button">PLAY</button>
                     </div>
                 <?php
             }
@@ -84,5 +84,6 @@
             <?php displaySongs($tabAlbums);?>
         </div>
     </main>
+    <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
 </body>
 </html>
