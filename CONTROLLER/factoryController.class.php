@@ -10,6 +10,7 @@
 	include_once("CONTROLLER/signupController.class.php");
 	include_once("CONTROLLER/logoutController.class.php");
 	include_once("CONTROLLER/searchController.class.php");
+    include_once("CONTROLLER/updateProfileController.php");
 
     // AdminAction
 	include_once("CONTROLLER/createUserController.class.php");
@@ -46,6 +47,9 @@ class Factory{
                 break;
             case $action == "delete":
                 $controller = new Delete();
+                break;
+            case $action == "updateProfile":
+                $controller =  new UpdateProfile();
                 break;
 
             // controller administratifs
