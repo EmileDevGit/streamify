@@ -47,29 +47,41 @@
     }
 
     function playtime(audio){
+        timerX = setInterval(timeLine, 50);
         audio.onended = function(){
-            playing = false;
+            clearInterval(timerX);
+            document.getElementById("mediaPlayer").style.backgroundSize = 0+"%";
             document.getElementById("play-pause").innerHTML = "⏵";
         };
     }
 
-    function togglePlayPause(){
+    function updateTimeLine(){
+        clearInterval(timerX);
+        timerX = setInterval(timeLine, 50);
+    }
+
+    function timeLine(){
+            bgFill = audio.currentTime * 100 / audio.duration;
+            document.getElementById("mediaPlayer").style.backgroundSize = bgFill + "%";
+        }
+
+    
+        function togglePlayPause(){
         if(document.getElementById("play-pause").innerHTML === "⏸"){
             audio.pause();
             document.getElementById("play-pause").innerHTML = "⏵";
         } else {
             audio.play();
+            updateTimeLine();
             document.getElementById("play-pause").innerHTML = "⏸";
         }
     }
 
     function moveAround(direction){
-        if(document.getElementById("play-pause").innerHTML === "⏸"){
-            if(direction === "forward"){
-                audio.currentTime += 5;
-            } else {
-                audio.currentTime -= 5;
-            }
+        if(direction === "forward"){
+            audio.currentTime += 5;
+        } else {
+            audio.currentTime -= 5;
         }
     }
 </script>

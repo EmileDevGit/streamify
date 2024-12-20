@@ -12,7 +12,7 @@
         var(--surface1) 75%,
         var(--surface2) 100%
     );
-    background-size: 75%;
+    background-size: 0%;
     background-position-x: left;
     background-repeat: no-repeat;
     background-blend-mode: difference;
@@ -26,6 +26,7 @@
                                 var(--red) 100%
                                 );
     border-image-slice: 1;
+    border-radius: 15px;
     position: fixed;
     bottom: 0px;
     display: flex;

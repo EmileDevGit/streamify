@@ -99,7 +99,7 @@ CREATE TABLE songs (
       ON UPDATE CASCADE
 );
 
-INSERT INTO songs VALUES(0, "Wannabe", "4:25", 0, "defaultSong.png", "Never_Gonna_Give_You_Up.mp3", 1);
+INSERT INTO songs VALUES(0, "Never", "4:25", 0, "defaultSong.png", "Never_Gonna_Give_You_Up.mp3", 1);
 INSERT INTO songs VALUES(0, "Prophets", "3:16", 0, "defaultSong.png", "noFile", 2);
 INSERT INTO songs VALUES(0, "Exctract", "4:25", 0, "defaultSong.png", "noFile", 3);
 INSERT INTO songs VALUES(0, "Étoile Filantes", "3:16", 0, "defaultSong.png", "noFile", 1);
