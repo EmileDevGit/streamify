@@ -41,9 +41,16 @@
     
     <main>
         <section class="profile">
-            <div class="profile-picture">
+            <div class="profile-picture" id="profilePicture">
                 <img src="VIEW/IMAGES/profile/<?php echo $userObject->getImageFileName(); ?>" alt="Profil">
             </div>
+            <div class="profile-popup" id="profilePopup" style="display: none;">
+            <h3>Changer la photo de profil</h3>
+            <form action="?action=updateProfile" method="POST" enctype="multipart/form-data">
+                <input type="file" name="profilePic" id="profilePic" accept="image/*" required>
+                <button type="submit" class="button">Mettre à jour</button>
+            </form>
+        </div>
             <section class="setting">
                 <p>Account Setting</p>
             </section>
@@ -56,5 +63,24 @@
         </section>
     </main>
     <?php include_once("VIEW/commons/mediaPlayer.inc.php"); ?>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var profileIcon = document.getElementById("profilePicture");
+        var profilePopup = document.getElementById("profilePopup");
+
+        // ouvre le popup si la souris est sur l'image de profil
+        profileIcon.addEventListener("mouseover", function() {
+            profilePopup.style.display = "block";
+    });
+
+        // Fermer le popup si on clique ailleur
+    document.addEventListener("click", function(event) {
+        if (!profileIcon.contains(event.target) && !profilePopup.contains(event.target)) {
+            profilePopup.style.display = "none";
+        }});
+    });
+    </script>
+
 </body>
 </html>
