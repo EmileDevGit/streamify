@@ -8,10 +8,8 @@
             $song = $tabsongs[$i];
             $album = AlbumDAO::chercher($song->getSongID());
             ?>
-            <script>
-                alert("<?php echo $song->getMediaFileName()?>");
-            </script>
                 <div class="musique">
+                    <audio id="audio<?php echo $i?>" src="AUDIO/<?php echo $song->getMediaFileName(); ?>"></audio>
                     <div class="musique-content">
                         <div class="musique-info">
                             <div class="picture">

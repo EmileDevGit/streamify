@@ -4,6 +4,19 @@
     width: 99.5%;
     height: 75px;
     background-color: var(--crust);
+    background-image: linear-gradient(
+        to right,
+        var(--mantle) 0%,
+        var(--base) 25%,
+        var(--surface0) 50%,
+        var(--surface1) 75%,
+        var(--surface2) 100%
+    );
+    background-size: 75%;
+    background-position-x: left;
+    background-repeat: no-repeat;
+    background-blend-mode: difference;
+    
     border: 3px solid transparent;
     border-image: linear-gradient(to top right,
                                 var(--mauve) 0%,
