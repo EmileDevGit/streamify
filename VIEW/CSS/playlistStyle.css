@@ -1,0 +1,109 @@
+@import url("commons/catppucin_DarkMode.inc.css");
+@import url("commons/header.inc.css");
+@import url("commons/mediaPlayer.inc.css");
+
+body {
+    background-color: var(--base);
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    min-width: fit-content;
+    font-family: system-ui;
+    color: var(--text);
+}
+
+.playlistHead{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 60px;
+    margin: auto;
+    margin-top: 50px;
+    max-width: 60%;
+    border-bottom: solid 2px var(--surface1);
+    
+}
+
+.imageContainer{
+    min-width: 100%;
+    padding: 15px;
+}
+.imageContainer img{
+    align-self: center;
+    border-radius: 15px;
+    margin: auto;
+    width: 100%;
+}
+
+.playlistInfo{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.playButton{
+    padding-top: 143px;
+}
+
+.playButton button{
+    justify-self: center;
+    width: 25%;
+    height: 35px;
+    text-align: center;
+    background-color: var(--mauve);
+    border: solid var(--mauve);
+    border-radius: 12px;
+}
+
+.songs{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 60%;
+}
+
+.songElement{
+    background-color: var(--crust);
+    padding: 10px;
+    display: grid;
+    border: solid 2px var(--lavander);
+    border-radius: 15px;
+    max-height: fit-content;
+    min-height: 150px;
+    grid-template-columns: 25% 75%;
+
+}
+
+.songInfo{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.songInfo button{
+    width: 70px;
+    height: 35px;
+    background-color: var(--mauve);
+    border: solid var(--mauve);
+    border-radius: 12px;
+}
+
+.songImageContainer{
+    width: 100%;
+    padding: 15px;
+}
+.songImageContainer img{
+    border-radius: 15px;
+    align-self: center;
+    margin: auto;
+    width: 80%;
+    height: auto;
+}
+
+@media (max-width : 600px){
+    
+    
+    
+}

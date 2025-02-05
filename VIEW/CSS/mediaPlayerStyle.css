@@ -1,0 +1,104 @@
+@import url("commons/catppucin_DarkMode.inc.css");
+
+.mediaPlayer{
+    width: 99.5%;
+    height: 75px;
+    background-color: var(--crust);
+    background-image: linear-gradient(
+        to right,
+        var(--mantle) 0%,
+        var(--base) 25%,
+        var(--surface0) 50%,
+        var(--surface1) 75%,
+        var(--surface2) 100%
+    );
+    background-size: 0%;
+    background-position-x: left;
+    background-repeat: no-repeat;
+    background-blend-mode: difference;
+    
+    border: 3px solid transparent;
+    border-image: linear-gradient(to top right,
+                                var(--mauve) 0%,
+                                var(--sapphire) 25%,
+                                var(--green) 50%,
+                                var(--peach) 75%,
+                                var(--red) 100%
+                                );
+    border-image-slice: 1;
+    border-radius: 15px;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-start;
+}
+.mp-transit{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.mp-hide{
+    padding: 0;
+    opacity: 0;
+    height: 0;
+}
+
+.imageContainer{
+    width: 7%;
+    max-width: 7%;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+#mpSongImage{
+    border-radius: 20%;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.title{
+    padding: 5px;
+    width: 40%;
+}
+
+#title{
+    font-size: larger;
+    overflow: hidden;
+}
+
+.mediaControls{
+    margin-top: 7px;
+    max-height: 50%;
+    display: flex;
+    gap: 15px;
+}
+
+.mediaButton{
+    font-size: 2.5em;
+    font-weight: bolder;
+    background-color: transparent;
+    color: var(--text);
+    border: transparent;
+}
+
+.closeMedia{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#closeMedia{
+    font-size: 1.5em;
+    font-weight: bolder;
+    background-color: transparent;
+    color: var(--peach);
+    border: transparent;
+    margin-bottom: 38px;
+    margin-right: 5px;
+}
+
+.mediaButton:hover, #closeMedia:hover{
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
